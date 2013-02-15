@@ -1,0 +1,294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CEAC4FC816CE974D00CEFD55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEAC4FC716CE974D00CEFD55 /* UIKit.framework */; };
+		CEAC4FCA16CE974D00CEFD55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEAC4FC916CE974D00CEFD55 /* Foundation.framework */; };
+		CEAC4FCC16CE974D00CEFD55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEAC4FCB16CE974D00CEFD55 /* CoreGraphics.framework */; };
+		CEAC4FD216CE974D00CEFD55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4FD016CE974D00CEFD55 /* InfoPlist.strings */; };
+		CEAC4FD416CE974D00CEFD55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FD316CE974D00CEFD55 /* main.m */; };
+		CEAC4FD816CE974D00CEFD55 /* O2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FD716CE974D00CEFD55 /* O2AppDelegate.m */; };
+		CEAC4FDA16CE974D00CEFD55 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4FD916CE974D00CEFD55 /* Default.png */; };
+		CEAC4FDC16CE974E00CEFD55 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4FDB16CE974E00CEFD55 /* Default@2x.png */; };
+		CEAC4FDE16CE974E00CEFD55 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4FDD16CE974E00CEFD55 /* Default-568h@2x.png */; };
+		CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE516CE987300CEFD55 /* FirstViewController.m */; };
+		CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE816CE988700CEFD55 /* SecondViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CEAC4FC316CE974D00CEFD55 /* Oska2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oska2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEAC4FC716CE974D00CEFD55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CEAC4FC916CE974D00CEFD55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CEAC4FCB16CE974D00CEFD55 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CEAC4FCF16CE974D00CEFD55 /* Oska2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Oska2-Info.plist"; sourceTree = "<group>"; };
+		CEAC4FD116CE974D00CEFD55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEAC4FD316CE974D00CEFD55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEAC4FD516CE974D00CEFD55 /* Oska2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Oska2-Prefix.pch"; sourceTree = "<group>"; };
+		CEAC4FD616CE974D00CEFD55 /* O2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = O2AppDelegate.h; sourceTree = "<group>"; };
+		CEAC4FD716CE974D00CEFD55 /* O2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = O2AppDelegate.m; sourceTree = "<group>"; };
+		CEAC4FD916CE974D00CEFD55 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		CEAC4FDB16CE974E00CEFD55 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CEAC4FDD16CE974E00CEFD55 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CEAC4FE416CE987300CEFD55 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		CEAC4FE516CE987300CEFD55 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		CEAC4FE716CE988700CEFD55 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		CEAC4FE816CE988700CEFD55 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEAC4FC016CE974D00CEFD55 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEAC4FC816CE974D00CEFD55 /* UIKit.framework in Frameworks */,
+				CEAC4FCA16CE974D00CEFD55 /* Foundation.framework in Frameworks */,
+				CEAC4FCC16CE974D00CEFD55 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEAC4FB816CE974D00CEFD55 = {
+			isa = PBXGroup;
+			children = (
+				CEAC4FCD16CE974D00CEFD55 /* Oska2 */,
+				CEAC4FC616CE974D00CEFD55 /* Frameworks */,
+				CEAC4FC416CE974D00CEFD55 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEAC4FC416CE974D00CEFD55 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEAC4FC316CE974D00CEFD55 /* Oska2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEAC4FC616CE974D00CEFD55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEAC4FC716CE974D00CEFD55 /* UIKit.framework */,
+				CEAC4FC916CE974D00CEFD55 /* Foundation.framework */,
+				CEAC4FCB16CE974D00CEFD55 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEAC4FCD16CE974D00CEFD55 /* Oska2 */ = {
+			isa = PBXGroup;
+			children = (
+				CEAC4FD616CE974D00CEFD55 /* O2AppDelegate.h */,
+				CEAC4FD716CE974D00CEFD55 /* O2AppDelegate.m */,
+				CEAC4FCE16CE974D00CEFD55 /* Supporting Files */,
+				CEAC4FE416CE987300CEFD55 /* FirstViewController.h */,
+				CEAC4FE516CE987300CEFD55 /* FirstViewController.m */,
+				CEAC4FE716CE988700CEFD55 /* SecondViewController.h */,
+				CEAC4FE816CE988700CEFD55 /* SecondViewController.m */,
+			);
+			path = Oska2;
+			sourceTree = "<group>";
+		};
+		CEAC4FCE16CE974D00CEFD55 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CEAC4FCF16CE974D00CEFD55 /* Oska2-Info.plist */,
+				CEAC4FD016CE974D00CEFD55 /* InfoPlist.strings */,
+				CEAC4FD316CE974D00CEFD55 /* main.m */,
+				CEAC4FD516CE974D00CEFD55 /* Oska2-Prefix.pch */,
+				CEAC4FD916CE974D00CEFD55 /* Default.png */,
+				CEAC4FDB16CE974E00CEFD55 /* Default@2x.png */,
+				CEAC4FDD16CE974E00CEFD55 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEAC4FC216CE974D00CEFD55 /* Oska2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEAC4FE116CE974E00CEFD55 /* Build configuration list for PBXNativeTarget "Oska2" */;
+			buildPhases = (
+				CEAC4FBF16CE974D00CEFD55 /* Sources */,
+				CEAC4FC016CE974D00CEFD55 /* Frameworks */,
+				CEAC4FC116CE974D00CEFD55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Oska2;
+			productName = Oska2;
+			productReference = CEAC4FC316CE974D00CEFD55 /* Oska2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEAC4FBA16CE974D00CEFD55 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = O2;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Neru;
+			};
+			buildConfigurationList = CEAC4FBD16CE974D00CEFD55 /* Build configuration list for PBXProject "Oska2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CEAC4FB816CE974D00CEFD55;
+			productRefGroup = CEAC4FC416CE974D00CEFD55 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEAC4FC216CE974D00CEFD55 /* Oska2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEAC4FC116CE974D00CEFD55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEAC4FD216CE974D00CEFD55 /* InfoPlist.strings in Resources */,
+				CEAC4FDA16CE974D00CEFD55 /* Default.png in Resources */,
+				CEAC4FDC16CE974E00CEFD55 /* Default@2x.png in Resources */,
+				CEAC4FDE16CE974E00CEFD55 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEAC4FBF16CE974D00CEFD55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEAC4FD416CE974D00CEFD55 /* main.m in Sources */,
+				CEAC4FD816CE974D00CEFD55 /* O2AppDelegate.m in Sources */,
+				CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */,
+				CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CEAC4FD016CE974D00CEFD55 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEAC4FD116CE974D00CEFD55 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CEAC4FDF16CE974E00CEFD55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CEAC4FE016CE974E00CEFD55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEAC4FE216CE974E00CEFD55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Oska2/Oska2-Prefix.pch";
+				INFOPLIST_FILE = "Oska2/Oska2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CEAC4FE316CE974E00CEFD55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Oska2/Oska2-Prefix.pch";
+				INFOPLIST_FILE = "Oska2/Oska2-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEAC4FBD16CE974D00CEFD55 /* Build configuration list for PBXProject "Oska2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEAC4FDF16CE974E00CEFD55 /* Debug */,
+				CEAC4FE016CE974E00CEFD55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEAC4FE116CE974E00CEFD55 /* Build configuration list for PBXNativeTarget "Oska2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEAC4FE216CE974E00CEFD55 /* Debug */,
+				CEAC4FE316CE974E00CEFD55 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEAC4FBA16CE974D00CEFD55 /* Project object */;
+}
