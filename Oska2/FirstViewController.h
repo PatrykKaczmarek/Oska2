@@ -7,12 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "O2Cell.h"
 
-
-@interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+{
+    NSMutableArray *dataOfFruitsTableArray;
+    NSMutableArray *dataOfVegetablesTableArray;
+    NSMutableArray *dataOfTableViewCellPicturesArray;
+    NSString *textFieldOutputString;
+    NSString *newDateString;
     
 }
 
+@property (nonatomic, strong) UIBarButtonItem *editBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *addBarButtonItem;
+@property (nonatomic, strong) UIAlertView *addRecordAlertView;
+@property (nonatomic, strong) UITextField *addRecordTextField;
+@property (nonatomic, strong) UIAlertView *chooseRecordDestinationAlertView;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSIndexSet *setAnimation;
+@property (nonatomic, strong) UILabel *myOwnCellDetailLabel;
 
 @end

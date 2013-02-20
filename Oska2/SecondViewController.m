@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        self.title = @"second";
+        self.title = @"Second";
     }
     return self;
 }

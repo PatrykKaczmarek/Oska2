@@ -18,6 +18,13 @@
 		CEAC4FDE16CE974E00CEFD55 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4FDD16CE974E00CEFD55 /* Default-568h@2x.png */; };
 		CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE516CE987300CEFD55 /* FirstViewController.m */; };
 		CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE816CE988700CEFD55 /* SecondViewController.m */; };
+		CEACDCE816D42FB4007A1A03 /* O2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEACDCE716D42FB4007A1A03 /* O2Cell.m */; };
+		CEACDCEA16D45828007A1A03 /* black rectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCE916D45828007A1A03 /* black rectangle.png */; };
+		CEACDCEC16D45A3C007A1A03 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCEB16D45A3C007A1A03 /* apple.png */; };
+		CEACDCF116D45D15007A1A03 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCED16D45D14007A1A03 /* banana.png */; };
+		CEACDCF216D45D15007A1A03 /* pineapple.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCEE16D45D14007A1A03 /* pineapple.png */; };
+		CEACDCF316D45D15007A1A03 /* strawberry.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCEF16D45D15007A1A03 /* strawberry.png */; };
+		CEACDCF416D45D15007A1A03 /* watermelon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCF016D45D15007A1A03 /* watermelon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +45,14 @@
 		CEAC4FE516CE987300CEFD55 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		CEAC4FE716CE988700CEFD55 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		CEAC4FE816CE988700CEFD55 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		CEACDCE616D42FB3007A1A03 /* O2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = O2Cell.h; sourceTree = "<group>"; };
+		CEACDCE716D42FB4007A1A03 /* O2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = O2Cell.m; sourceTree = "<group>"; };
+		CEACDCE916D45828007A1A03 /* black rectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "black rectangle.png"; sourceTree = "<group>"; };
+		CEACDCEB16D45A3C007A1A03 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		CEACDCED16D45D14007A1A03 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banana.png; sourceTree = "<group>"; };
+		CEACDCEE16D45D14007A1A03 /* pineapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pineapple.png; sourceTree = "<group>"; };
+		CEACDCEF16D45D15007A1A03 /* strawberry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strawberry.png; sourceTree = "<group>"; };
+		CEACDCF016D45D15007A1A03 /* watermelon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermelon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +106,9 @@
 				CEAC4FE516CE987300CEFD55 /* FirstViewController.m */,
 				CEAC4FE716CE988700CEFD55 /* SecondViewController.h */,
 				CEAC4FE816CE988700CEFD55 /* SecondViewController.m */,
+				CEACDCE616D42FB3007A1A03 /* O2Cell.h */,
+				CEACDCE716D42FB4007A1A03 /* O2Cell.m */,
+				CEACDCF516D45D18007A1A03 /* Resources */,
 			);
 			path = Oska2;
 			sourceTree = "<group>";
@@ -107,6 +125,19 @@
 				CEAC4FDD16CE974E00CEFD55 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CEACDCF516D45D18007A1A03 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CEACDCE916D45828007A1A03 /* black rectangle.png */,
+				CEACDCEB16D45A3C007A1A03 /* apple.png */,
+				CEACDCED16D45D14007A1A03 /* banana.png */,
+				CEACDCEE16D45D14007A1A03 /* pineapple.png */,
+				CEACDCEF16D45D15007A1A03 /* strawberry.png */,
+				CEACDCF016D45D15007A1A03 /* watermelon.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +196,12 @@
 				CEAC4FDA16CE974D00CEFD55 /* Default.png in Resources */,
 				CEAC4FDC16CE974E00CEFD55 /* Default@2x.png in Resources */,
 				CEAC4FDE16CE974E00CEFD55 /* Default-568h@2x.png in Resources */,
+				CEACDCEA16D45828007A1A03 /* black rectangle.png in Resources */,
+				CEACDCEC16D45A3C007A1A03 /* apple.png in Resources */,
+				CEACDCF116D45D15007A1A03 /* banana.png in Resources */,
+				CEACDCF216D45D15007A1A03 /* pineapple.png in Resources */,
+				CEACDCF316D45D15007A1A03 /* strawberry.png in Resources */,
+				CEACDCF416D45D15007A1A03 /* watermelon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +216,7 @@
 				CEAC4FD816CE974D00CEFD55 /* O2AppDelegate.m in Sources */,
 				CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */,
 				CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */,
+				CEACDCE816D42FB4007A1A03 /* O2Cell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +325,7 @@
 				CEAC4FE316CE974E00CEFD55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
