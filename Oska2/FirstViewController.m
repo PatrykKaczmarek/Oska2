@@ -24,7 +24,7 @@
     }
     return self;    
 }
-
+/////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - View lifecycle
 
@@ -42,10 +42,8 @@
     //UIAlertView:
     _addRecordAlertView = [[UIAlertView alloc] initWithTitle:@"Add Record" message:@"Please add your data" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add to fruits",@"Add to vegetables", nil];
     [_addRecordAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    _addRecordAlertView.tag = 1;
     
 //    _chooseRecordDestinationAlertView = [[UIAlertView alloc] initWithTitle:@"Destination" message:@"Where you want to put this data?" delegate:self cancelButtonTitle:@"Fruits" otherButtonTitles:@"Vegetables", nil];
-//    _chooseRecordDestinationAlertView.tag = 2;
     
     //UITextField in AlertView
     _addRecordTextField = [_addRecordAlertView textFieldAtIndex:0];
@@ -59,14 +57,16 @@
     [_tableView setDataSource:self];
     [self.view addSubview:_tableView];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 50.0f)];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, CGRectGetWidth(_tableView.frame) - 20.0f, CGRectGetHeight(headerView.frame) - 20.0f)];
-    [headerLabel setText:@"OUR STOREHOUSE"];
-    [headerLabel setBackgroundColor:[UIColor clearColor]];
-    [headerLabel setTextAlignment:NSTextAlignmentCenter];
-    [headerView addSubview:headerLabel];
-    [headerView setBackgroundColor:[UIColor cyanColor]];
-    _tableView.tableHeaderView = headerView;
+    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 50.0f)];
+    [_headerView setBackgroundColor:[UIColor cyanColor]];
+    
+    _headerLabel = [[UILabel alloc] init];
+    [_headerLabel setText:@"Your storehouse"];
+    [_headerLabel setBackgroundColor:[UIColor whiteColor]];
+    [_headerLabel setTextAlignment:NSTextAlignmentCenter];
+    [_headerView addSubview:_headerLabel];
+    
+    _tableView.tableHeaderView = _headerView;
     
 //    newDateString = [self getTime];
     newDateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
@@ -75,12 +75,31 @@
     
     dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:@"apple", @"banana", @"pineapple", @"strawberry", @"watermelon", nil];
     dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:@"carrot", @"tomato", @"cucumber", nil];
-    dataOfTableViewCellPicturesArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"apple"], [UIImage imageNamed:@"banana"], [UIImage imageNamed:@"pineapple"], [UIImage imageNamed:@"strawberry"], [UIImage imageNamed:@"watermelon"], nil];
+    dataOfTableViewCellPicturesArray = [[NSMutableArray alloc] initWithObjects:
+                                        [UIImage imageNamed:@"apple"],
+                                        [UIImage imageNamed:@"banana"],
+                                        [UIImage imageNamed:@"pineapple"],
+                                        [UIImage imageNamed:@"strawberry"],
+                                        [UIImage imageNamed:@"watermelon"],
+                                        nil];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-- (void)viewWillLayoutSubviews {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [_tableView reloadData];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+- (void)viewWillLayoutSubviews
+{
     [super viewWillLayoutSubviews];
+    
+    [_headerLabel setFrame:CGRectMake(10.0f,
+                                      10.0f,
+                                      CGRectGetWidth(_tableView.frame) - 20.0f,
+                                      CGRectGetHeight(_headerView.frame) - 20.0f)];
     
     [_tableView setFrame:self.view.frame];
 }
@@ -106,7 +125,6 @@
         
     }
     [_chooseRecordDestinationAlertView show];
-    
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -123,6 +141,7 @@
     if (buttonIndex == 1)
     {
         [dataOfFruitsTableArray addObject:textFieldOutputString];
+        [dataOfTableViewCellPicturesArray addObject:[UIImage imageNamed:@"apple"]];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationFade];
     }
     else if (buttonIndex == 2)
@@ -155,6 +174,15 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"You clicked me! Section:%d, row:%d", indexPath.section, indexPath.row);
+
+    SecondViewController *secondViewController = [[SecondViewController alloc] init];
+    [self.navigationController pushViewController:secondViewController animated:YES];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -176,69 +204,33 @@
 /////////////////////////////////////////////////////////////////////////////////
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    UILabel *myOwnCellMainLabel;
-    UIImageView *myOwnCellLeftImageView;
-    UIImageView *myOwnCellRightImageView;
-       
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        
-        cell.backgroundColor = [UIColor yellowColor];
-        
-        myOwnCellMainLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.0f ,5.0f, CGRectGetWidth(tableView.frame)-30.0f, 15.0f)];
-        myOwnCellMainLabel.backgroundColor = [UIColor clearColor];
-        myOwnCellMainLabel.textColor = [UIColor blueColor];
-        myOwnCellMainLabel.textAlignment = NSTextAlignmentLeft;
-        myOwnCellMainLabel.font = [UIFont systemFontOfSize:15.0f];
-        myOwnCellMainLabel.tag = 101;
-        
-        _myOwnCellDetailLabel = [[UILabel alloc] initWithFrame:CGRectMake(100.0f ,22.5f, CGRectGetWidth(tableView.frame)-30.0f, 10.0f)];
-        _myOwnCellDetailLabel.backgroundColor = [UIColor clearColor];
-        _myOwnCellDetailLabel.textColor = [UIColor brownColor];
-        _myOwnCellDetailLabel.textAlignment = NSTextAlignmentLeft;
-        _myOwnCellDetailLabel.font = [UIFont systemFontOfSize:10.0f];
-        _myOwnCellDetailLabel.tag = 102;
-        
-        myOwnCellLeftImageView = [[UIImageView alloc] initWithFrame: CGRectMake(10.0f ,7.5f, 12.0f, 12.0f)];
-        myOwnCellLeftImageView.image = [UIImage imageNamed:@"black rectangle"];
-        myOwnCellLeftImageView.tag = 103;
-        
-        myOwnCellRightImageView = [[UIImageView alloc] initWithFrame: CGRectMake(200.0f ,5.0f, 32.0f, 32.0f)];
-        myOwnCellRightImageView.tag = 104;
-        
-        [cell.contentView addSubview:myOwnCellMainLabel];
-        [cell.contentView addSubview:_myOwnCellDetailLabel];
-        [cell.contentView addSubview:myOwnCellLeftImageView];
-        [cell.contentView addSubview:myOwnCellRightImageView];
+    O2Cell *cell;
+    switch (indexPath.section) {
+        case 0: {
+            static NSString *cellIdentifier1 = @"Cell1";
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier1];
+            if (cell == nil) {
+                cell = [[O2Cell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier1];
+            }
+            cell.mainLabel.text = [dataOfFruitsTableArray objectAtIndex:indexPath.row];
+            cell.detailLabel.text = newDateString;
+            cell.o2ImageView.image = [dataOfTableViewCellPicturesArray objectAtIndex:indexPath.row];
+//            [dataOfTableViewCellPicturesArray addObject:[UIImage imageNamed:@"ble"]];
+            break;
+        }
+        default: {
+            static NSString *cellIdentifier2 = @"Cell2";
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier2];
+            if (cell == nil) {
+                cell = [[O2Cell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier2];
+            }
+            cell.mainLabel.text = [dataOfVegetablesTableArray objectAtIndex:indexPath.row];
+            cell.detailLabel.text = newDateString;
+//            cell.o2ImageView.image = [dataOfTableViewCellPicturesArray objectAtIndex:indexPath.row];
+            break;
+        }
     }
-    
-    myOwnCellMainLabel = (UILabel *)[cell.contentView viewWithTag:101];
-    _myOwnCellDetailLabel = (UILabel *)[cell.contentView viewWithTag:102];
-    myOwnCellLeftImageView = (UIImageView *)[cell.contentView viewWithTag:103];
-    myOwnCellRightImageView = (UIImageView *)[cell.contentView viewWithTag:104];
-   
-    
-    switch (indexPath.section)
-    {
-        case 0:
-            myOwnCellMainLabel.text = [dataOfFruitsTableArray objectAtIndex:indexPath.row];
-            _myOwnCellDetailLabel.text = newDateString;
-            myOwnCellRightImageView.image = [dataOfTableViewCellPicturesArray objectAtIndex:indexPath.row];
-            break;
-        case 1:
-            cell.textLabel.text = [dataOfVegetablesTableArray objectAtIndex:indexPath.row];
-            cell.detailTextLabel.text = [dataOfVegetablesTableArray objectAtIndex:indexPath.row];
-            break;
-        default:
-            break;
-    }
-    
-        cell.showsReorderControl = YES;
-    
+
     return cell;
 }
 
@@ -246,15 +238,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 40.0f;
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"You clicked me! Section:%d, row:%d", indexPath.section, indexPath.row);
-    
-    SecondViewController *secondViewController = [[SecondViewController alloc] init];
-    [self.navigationController pushViewController:secondViewController animated:YES];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -306,6 +289,7 @@
         {
             case 0:
                 [dataOfFruitsTableArray removeObjectAtIndex:indexPath.row];
+                [dataOfTableViewCellPicturesArray removeObjectAtIndex:indexPath.row];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                 break;
             case 1:
@@ -319,6 +303,5 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-
 
 @end

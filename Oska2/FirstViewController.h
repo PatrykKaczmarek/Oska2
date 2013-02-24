@@ -16,6 +16,9 @@
     NSMutableArray *dataOfTableViewCellPicturesArray;
     NSString *textFieldOutputString;
     NSString *newDateString;
+    UIView *_headerView;
+    UILabel *_headerLabel;
+    NSIndexSet *_setAnimation;
     
 }
 
@@ -25,7 +28,5 @@
 @property (nonatomic, strong) UITextField *addRecordTextField;
 @property (nonatomic, strong) UIAlertView *chooseRecordDestinationAlertView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSIndexSet *setAnimation;
-@property (nonatomic, strong) UILabel *myOwnCellDetailLabel;
 
 @end

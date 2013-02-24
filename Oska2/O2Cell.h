@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface O2Cell : UITableViewCell 
+@interface O2Cell : UITableViewCell {
+    // o zasięgu klasowym
+}
+
+// o zasięgu globalnym
+@property (nonatomic, strong) UILabel *mainLabel;
+@property (nonatomic, strong) UILabel *detailLabel;
+@property (nonatomic, strong) UIImageView *o2ImageView;
+
+//tak sie przekazuje wlasne metody miedzy klasami:
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier title:(NSString *)title;
 
 @end
+
+
