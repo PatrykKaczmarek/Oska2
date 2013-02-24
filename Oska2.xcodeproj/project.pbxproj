@@ -25,6 +25,7 @@
 		CEACDCF216D45D15007A1A03 /* pineapple.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCEE16D45D14007A1A03 /* pineapple.png */; };
 		CEACDCF316D45D15007A1A03 /* strawberry.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCEF16D45D15007A1A03 /* strawberry.png */; };
 		CEACDCF416D45D15007A1A03 /* watermelon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEACDCF016D45D15007A1A03 /* watermelon.png */; };
+		CEAD5F3A16D7D34A00D32AC8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAD5F3916D7D34A00D32AC8 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		CEACDCEE16D45D14007A1A03 /* pineapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pineapple.png; sourceTree = "<group>"; };
 		CEACDCEF16D45D15007A1A03 /* strawberry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = strawberry.png; sourceTree = "<group>"; };
 		CEACDCF016D45D15007A1A03 /* watermelon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermelon.png; sourceTree = "<group>"; };
+		CEAD5F3816D7D34A00D32AC8 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		CEAD5F3916D7D34A00D32AC8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,10 +107,12 @@
 				CEAC4FCE16CE974D00CEFD55 /* Supporting Files */,
 				CEAC4FE416CE987300CEFD55 /* FirstViewController.h */,
 				CEAC4FE516CE987300CEFD55 /* FirstViewController.m */,
-				CEAC4FE716CE988700CEFD55 /* SecondViewController.h */,
-				CEAC4FE816CE988700CEFD55 /* SecondViewController.m */,
 				CEACDCE616D42FB3007A1A03 /* O2Cell.h */,
 				CEACDCE716D42FB4007A1A03 /* O2Cell.m */,
+				CEAD5F3816D7D34A00D32AC8 /* DetailViewController.h */,
+				CEAD5F3916D7D34A00D32AC8 /* DetailViewController.m */,
+				CEAC4FE716CE988700CEFD55 /* SecondViewController.h */,
+				CEAC4FE816CE988700CEFD55 /* SecondViewController.m */,
 				CEACDCF516D45D18007A1A03 /* Resources */,
 			);
 			path = Oska2;
@@ -217,6 +222,7 @@
 				CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */,
 				CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */,
 				CEACDCE816D42FB4007A1A03 /* O2Cell.m in Sources */,
+				CEAD5F3A16D7D34A00D32AC8 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

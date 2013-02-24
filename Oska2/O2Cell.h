@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface O2Cell : UITableViewCell 
+@interface O2Cell : UITableViewCell
+{
+    // zmienne tylko do rwx w O2Cell
+}
+
+// zmienne, do których ma dostęp każda klasa, która ma dostęp do stworzonego obiektu typu O2Cell
+
+@property (strong, nonatomic) UILabel *cellLabel;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+
 
 @end
+;

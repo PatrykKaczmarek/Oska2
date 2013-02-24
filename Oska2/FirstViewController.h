@@ -11,21 +11,21 @@
 
 @interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 {
-    NSMutableArray *dataOfFruitsTableArray;
-    NSMutableArray *dataOfVegetablesTableArray;
-    NSMutableArray *dataOfTableViewCellPicturesArray;
+    NSMutableArray *listOfCountriesNames;
+//    NSMutableArray *dataOfFruitsTableArray;
+//    NSMutableArray *dataOfVegetablesTableArray;
+//    NSMutableArray *dataOfTableViewCellPicturesArray;
     NSString *textFieldOutputString;
     NSString *newDateString;
+    UIBarButtonItem *editBarButtonItem;
+    UIBarButtonItem *addBarButtonItem;
+    UIAlertView *addRecordAlertView;
+    UITextField *addRecordTextField;
+    UIAlertView *chooseRecordDestinationAlertView;
+    NSIndexSet *setAnimation;
     
 }
 
-@property (nonatomic, strong) UIBarButtonItem *editBarButtonItem;
-@property (nonatomic, strong) UIBarButtonItem *addBarButtonItem;
-@property (nonatomic, strong) UIAlertView *addRecordAlertView;
-@property (nonatomic, strong) UITextField *addRecordTextField;
-@property (nonatomic, strong) UIAlertView *chooseRecordDestinationAlertView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSIndexSet *setAnimation;
-@property (nonatomic, strong) UILabel *myOwnCellDetailLabel;
 
 @end
