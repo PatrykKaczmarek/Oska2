@@ -7,7 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "SecondViewController.h"
 
 @interface FirstViewController ()
 
@@ -20,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        self.title = @"Owoce";
+        self.title = @"Item roll";
     }
     return self;    
 }
@@ -38,12 +37,12 @@
     self.navigationItem.leftBarButtonItem = _editBarButtonItem;
     _addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRecord)];
     self.navigationItem.rightBarButtonItem = _addBarButtonItem;
-        
+    
     //UIAlertView:
     _addRecordAlertView = [[UIAlertView alloc] initWithTitle:@"Add Record" message:@"Please add your data" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add to fruits",@"Add to vegetables", nil];
     [_addRecordAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     
-//    _chooseRecordDestinationAlertView = [[UIAlertView alloc] initWithTitle:@"Destination" message:@"Where you want to put this data?" delegate:self cancelButtonTitle:@"Fruits" otherButtonTitles:@"Vegetables", nil];
+    //    _chooseRecordDestinationAlertView = [[UIAlertView alloc] initWithTitle:@"Destination" message:@"Where you want to put this data?" delegate:self cancelButtonTitle:@"Fruits" otherButtonTitles:@"Vegetables", nil];
     
     //UITextField in AlertView
     _addRecordTextField = [_addRecordAlertView textFieldAtIndex:0];
@@ -57,31 +56,27 @@
     [_tableView setDataSource:self];
     [self.view addSubview:_tableView];
     
-    _headerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 50.0f)];
-    [_headerView setBackgroundColor:[UIColor cyanColor]];
-    
-    _headerLabel = [[UILabel alloc] init];
-    [_headerLabel setText:@"Your storehouse"];
-    [_headerLabel setBackgroundColor:[UIColor whiteColor]];
-    [_headerLabel setTextAlignment:NSTextAlignmentCenter];
-    [_headerView addSubview:_headerLabel];
-    
+    _headerView = [[Header alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 50.0f)];
     _tableView.tableHeaderView = _headerView;
     
-//    newDateString = [self getTime];
+    //    newDateString = [self getTime];
     newDateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                    dateStyle:NSDateFormatterNoStyle
                                                    timeStyle:NSDateFormatterShortStyle];
     
     dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:@"apple", @"banana", @"pineapple", @"strawberry", @"watermelon", nil];
     dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:@"carrot", @"tomato", @"cucumber", nil];
-    dataOfTableViewCellPicturesArray = [[NSMutableArray alloc] initWithObjects:
-                                        [UIImage imageNamed:@"apple"],
-                                        [UIImage imageNamed:@"banana"],
-                                        [UIImage imageNamed:@"pineapple"],
-                                        [UIImage imageNamed:@"strawberry"],
-                                        [UIImage imageNamed:@"watermelon"],
-                                        nil];
+    ImagesOfFruitArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"apple"],
+                                                                 [UIImage imageNamed:@"banana"],
+                                                                 [UIImage imageNamed:@"pineapple"],
+                                                                 [UIImage imageNamed:@"strawberry"],
+                                                                 [UIImage imageNamed:@"watermelon"],
+                                                                 nil];
+    
+    ImagesOfVegetablesArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"carrot"],
+                                                                      [UIImage imageNamed:@"tomato"],
+                                                                      [UIImage imageNamed:@"cucumber"],
+                                                                      nil];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -95,12 +90,6 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
-    [_headerLabel setFrame:CGRectMake(10.0f,
-                                      10.0f,
-                                      CGRectGetWidth(_tableView.frame) - 20.0f,
-                                      CGRectGetHeight(_headerView.frame) - 20.0f)];
-    
     [_tableView setFrame:self.view.frame];
 }
 /////////////////////////////////////////////////////////////////////////////////
@@ -130,7 +119,15 @@
 /////////////////////////////////////////////////////////////////////////////////
 -(void)addRecord
 {
-    [_addRecordAlertView show];
+    AddItemViewController *addItemViewController = [[AddItemViewController alloc] init];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    [UIView setAnimationDuration:0.75];
+    [self.navigationController pushViewController:addItemViewController animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
+
+//    [_addRecordAlertView show];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -141,12 +138,13 @@
     if (buttonIndex == 1)
     {
         [dataOfFruitsTableArray addObject:textFieldOutputString];
-        [dataOfTableViewCellPicturesArray addObject:[UIImage imageNamed:@"apple"]];
+        [ImagesOfFruitArray addObject:[UIImage imageNamed:@"noimage"]];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationFade];
     }
     else if (buttonIndex == 2)
     {
         [dataOfVegetablesTableArray addObject:textFieldOutputString];
+        [ImagesOfVegetablesArray addObject:[UIImage imageNamed:@"noimage"]];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation: UITableViewRowAnimationFade];
     }
 }
@@ -178,8 +176,8 @@
 {
     NSLog(@"You clicked me! Section:%d, row:%d", indexPath.section, indexPath.row);
 
-    SecondViewController *secondViewController = [[SecondViewController alloc] init];
-    [self.navigationController pushViewController:secondViewController animated:YES];
+    FirstDetailViewController *firstDetailViewController = [[FirstDetailViewController alloc] init];
+    [self.navigationController pushViewController:firstDetailViewController animated:YES];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -214,7 +212,7 @@
             }
             cell.mainLabel.text = [dataOfFruitsTableArray objectAtIndex:indexPath.row];
             cell.detailLabel.text = newDateString;
-            cell.o2ImageView.image = [dataOfTableViewCellPicturesArray objectAtIndex:indexPath.row];
+            cell.o2ImageView.image = [ImagesOfFruitArray objectAtIndex:indexPath.row];
 //            [dataOfTableViewCellPicturesArray addObject:[UIImage imageNamed:@"ble"]];
             break;
         }
@@ -226,6 +224,7 @@
             }
             cell.mainLabel.text = [dataOfVegetablesTableArray objectAtIndex:indexPath.row];
             cell.detailLabel.text = newDateString;
+            cell.o2ImageView.image = [ImagesOfVegetablesArray objectAtIndex:indexPath.row];
 //            cell.o2ImageView.image = [dataOfTableViewCellPicturesArray objectAtIndex:indexPath.row];
             break;
         }
@@ -289,11 +288,12 @@
         {
             case 0:
                 [dataOfFruitsTableArray removeObjectAtIndex:indexPath.row];
-                [dataOfTableViewCellPicturesArray removeObjectAtIndex:indexPath.row];
+                [ImagesOfFruitArray removeObjectAtIndex:indexPath.row];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                 break;
             case 1:
                 [dataOfVegetablesTableArray removeObjectAtIndex:indexPath.row];
+                [ImagesOfVegetablesArray removeObjectAtIndex:indexPath.row];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                 break;
             default:

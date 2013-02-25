@@ -9,6 +9,7 @@
 #import "O2AppDelegate.h"
 #import "FirstViewController.h"
 #import "SecondViewController.h"
+#import "CustomNavigationController.h"
 
 @implementation O2AppDelegate
 
@@ -19,7 +20,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     FirstViewController *firstViewController = [[FirstViewController alloc] init];
-    UINavigationController *firstNavigationController = [[UINavigationController alloc] initWithRootViewController:firstViewController];
+    CustomNavigationController *firstNavigationController = [[CustomNavigationController alloc] initWithRootViewController:firstViewController];
     SecondViewController *secondViewController = [[SecondViewController alloc] init];
     UINavigationController *secondNavigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
     

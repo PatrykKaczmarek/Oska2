@@ -8,15 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "O2Cell.h"
+#import "SecondViewController.h"
+#import "Header.h"
+#import "FirstDetailViewController.h"
+#import "AddItemViewController.h"
 
 @interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 {
     NSMutableArray *dataOfFruitsTableArray;
     NSMutableArray *dataOfVegetablesTableArray;
-    NSMutableArray *dataOfTableViewCellPicturesArray;
+    NSMutableArray *ImagesOfFruitArray;
+    NSMutableArray *ImagesOfVegetablesArray;
     NSString *textFieldOutputString;
     NSString *newDateString;
-    UIView *_headerView;
     UILabel *_headerLabel;
     NSIndexSet *_setAnimation;
     
@@ -27,6 +31,8 @@
 @property (nonatomic, strong) UIAlertView *addRecordAlertView;
 @property (nonatomic, strong) UITextField *addRecordTextField;
 @property (nonatomic, strong) UIAlertView *chooseRecordDestinationAlertView;
+
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *headerView;
 
 @end

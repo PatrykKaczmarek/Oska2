@@ -20,21 +20,21 @@
         [self setBackgroundColor:[UIColor yellowColor]];
         
         _mainLabel = [[UILabel alloc] init];
-        [_mainLabel setBackgroundColor:[UIColor redColor]];
+        [_mainLabel setBackgroundColor:[UIColor clearColor]];
         [_mainLabel setTextColor:[UIColor blueColor]];
         [_mainLabel setTextAlignment:NSTextAlignmentLeft];
         [_mainLabel setFont:[UIFont systemFontOfSize:15.0f]];
         [self addSubview:_mainLabel];
-        
 
         _detailLabel = [[UILabel alloc] init];
-        [_detailLabel setBackgroundColor:[UIColor greenColor]];
+        [_detailLabel setBackgroundColor:[UIColor clearColor]];
         [_detailLabel setTextColor:[UIColor brownColor]];
         [_detailLabel setTextAlignment:NSTextAlignmentRight];
         [_detailLabel setFont:[UIFont systemFontOfSize:10.0f]];
         [self addSubview:_detailLabel];
         
         _o2ImageView = [[UIImageView alloc] init];
+        [_o2ImageView setContentMode:UIViewContentModeScaleAspectFit];
         [self addSubview:_o2ImageView];
     }
     return self;
@@ -47,7 +47,7 @@
     
     CGSize mainLabelSize = [_mainLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.contentView.frame) - 20.0f, MAXFLOAT)];
     CGSize detailLabelSize = [_detailLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.contentView.frame) - 20.0f, MAXFLOAT)];
-    CGSize o2ImageviewSize = [_o2ImageView sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+//    CGSize o2ImageviewSize = [_o2ImageView sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)]; //wykomentowane poniewaz chce miec stala wielkosc obrazka _o2ImageView 32 x 32 - zeby niestandardowe obrazki dopasowywaly sie zgodnie z UIViewContentModeScaleAspectFit
     
     [_mainLabel setFrame:CGRectMake(CGRectGetMinX(self.contentView.frame) + 10.0f,
                                     CGRectGetMinY(self.contentView.frame) + 10.0f,
@@ -56,14 +56,17 @@
     
     [_detailLabel setFrame:CGRectMake(CGRectGetMinX(self.contentView.frame) + 10.0f,
                                       CGRectGetMinY(self.contentView.frame) + 20.0f,
-                                      (CGRectGetMaxX(self.contentView.frame) - CGRectGetWidth(self.accessoryView.frame)),
+                                      (CGRectGetMaxX(self.contentView.frame) - CGRectGetWidth(_o2ImageView.frame) - 40.0f),
                                       detailLabelSize.height)];
-    
+
     [_o2ImageView setFrame:CGRectMake(CGRectGetMaxX(self.contentView.frame) - 40.0f,
                                       CGRectGetMinY(self.contentView.frame) + 5.0f,
-                                      o2ImageviewSize.width,
-                                      o2ImageviewSize.height)];
+                                      32.0f,
+                                      32.0f)];
 }
+
+//(CGRectGetMaxX(self.contentView.frame) - CGRectGetWidth(_o2ImageView.frame) - 40.0f)
+//CGRectGetMinX(_o2ImageView.frame) - CGRectGetMinX(self.contentView.frame) - 15.0f
 
 /////////////////////////////////////////////////////////////////////////////////
 - (void)setSelected:(BOOL)selected {

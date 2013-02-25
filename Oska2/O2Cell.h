@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FirstViewController.h"
 
-@interface O2Cell : UITableViewCell {
+@interface O2Cell : UITableViewCell
+{
     // o zasięgu klasowym
 }
 
