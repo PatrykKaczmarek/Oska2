@@ -21,7 +21,7 @@
         
         _mainLabel = [[UILabel alloc] init];
         [_mainLabel setBackgroundColor:[UIColor clearColor]];
-        [_mainLabel setTextColor:[UIColor blueColor]];
+        [_mainLabel setTextColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [_mainLabel setTextAlignment:NSTextAlignmentLeft];
         [_mainLabel setFont:[UIFont systemFontOfSize:15.0f]];
         [self addSubview:_mainLabel];
@@ -69,7 +69,8 @@
 //CGRectGetMinX(_o2ImageView.frame) - CGRectGetMinX(self.contentView.frame) - 15.0f
 
 /////////////////////////////////////////////////////////////////////////////////
-- (void)setSelected:(BOOL)selected {
+- (void)setSelected:(BOOL)selected
+{
     [super setSelected:selected];
 }
 

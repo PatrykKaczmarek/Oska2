@@ -19,7 +19,9 @@
 {
     self = [super init];
     if (self) {
-        self.title = @"Item roll";
+        self.title = NSLocalizedString(@"Item List", nil);
+        
+        [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:(@"fruits_little")] withFinishedUnselectedImage:[UIImage imageNamed:(@"fruits_little")]];
     }
     return self;    
 }
@@ -80,17 +82,24 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];    
     [_tableView reloadData];
+    [self showTabBar:self.tabBarController];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    SectionHeader *sectionHeader;
+    
     [_tableView setFrame:self.view.frame];
+    [sectionHeader setFrame:CGRectMake(0.0f,
+                                       0.0f,
+                                       CGRectGetWidth(_tableView.frame),
+                                       40.0f)];
 }
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -101,13 +110,13 @@
 {
     if (_editBarButtonItem.tag == 0)
     {
-        _editBarButtonItem.title = @"Done";
+        _editBarButtonItem.title = NSLocalizedString(@"Done", nil);
         [self.tableView setEditing:YES animated:YES];
         _editBarButtonItem.tag =1;
     }
     else if (_editBarButtonItem.tag == 1)
     {
-        _editBarButtonItem.title = @"Edit";
+        _editBarButtonItem.title = NSLocalizedString(@"Edit", nil);
         [self.tableView setEditing:NO animated:YES];
         _editBarButtonItem.tag = 0;
         [self.tableView reloadSections:_setAnimation withRowAnimation:UITableViewRowAnimationFade];
@@ -124,10 +133,71 @@
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     [UIView setAnimationDuration:0.75];
     [self.navigationController pushViewController:addItemViewController animated:NO];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];
+    
+    [self hideTabBar:self.tabBarController];
 
 //    [_addRecordAlertView show];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - UITabBarController
+
+/////////////////////////////////////////////////////////////////////////////////
+- (void) hideTabBar:(UITabBarController *) tabbarcontroller 
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    float fHeight = screenRect.size.height;
+    if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+    {
+        fHeight = screenRect.size.width;
+    }
+    
+    for(UIView *view in tabbarcontroller.view.subviews)
+    {
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, fHeight, view.frame.size.width, view.frame.size.height)];
+        }
+        else
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, fHeight)];
+            view.backgroundColor = [UIColor blackColor];
+        }
+    }
+    [UIView commitAnimations];
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+- (void) showTabBar:(UITabBarController *) tabbarcontroller
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    float fHeight = screenRect.size.height - 49.0;
+    
+    if (UIDeviceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+    {
+        fHeight = screenRect.size.width - 49.0;
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    for(UIView *view in tabbarcontroller.view.subviews)
+    {
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, fHeight, view.frame.size.width, view.frame.size.height)];
+        }
+        else
+        {
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, fHeight)];
+        }
+    }
+    [UIView commitAnimations];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -242,20 +312,38 @@
 /////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20.0f;
+    return 25.0f;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{   
+//    switch (section) {
+//        case 0:
+//            return NSLocalizedString(@"Fruits", nil);
+//        case 1:
+//            return NSLocalizedString(@"Vegetables", nil);
+//        default:
+//            return @"";
+//    }
+//}
+
+/////////////////////////////////////////////////////////////////////////////////
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
+    SectionHeader *sectionHeader;   
+    sectionHeader = [[SectionHeader alloc] init];
+        
+    switch (section)
+    {
         case 0:
-            return @"Fruits";
-        case 1:
-            return @"Vegetables";
+            [sectionHeader.sectionHeaderLabel setText: NSLocalizedString(@"Fruits", nil)];
+            break;
         default:
-            return @"";
+            [sectionHeader.sectionHeaderLabel setText: NSLocalizedString(@"Vegetables", nil)];
+            break;
     }
+    return sectionHeader;
 }
 
 /////////////////////////////////////////////////////////////////////////////////

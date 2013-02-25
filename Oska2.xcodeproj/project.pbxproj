@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEAC3EA716DBBCEF008CDDC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAC3EA516DBBCEF008CDDC9 /* InfoPlist.strings */; };
+		CEAC3EAC16DBBE7C008CDDC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAC3EAA16DBBE7C008CDDC9 /* Localizable.strings */; };
 		CEAC4FC816CE974D00CEFD55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEAC4FC716CE974D00CEFD55 /* UIKit.framework */; };
 		CEAC4FCA16CE974D00CEFD55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEAC4FC916CE974D00CEFD55 /* Foundation.framework */; };
 		CEAC4FCC16CE974D00CEFD55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEAC4FCB16CE974D00CEFD55 /* CoreGraphics.framework */; };
-		CEAC4FD216CE974D00CEFD55 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4FD016CE974D00CEFD55 /* InfoPlist.strings */; };
 		CEAC4FD416CE974D00CEFD55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FD316CE974D00CEFD55 /* main.m */; };
 		CEAC4FD816CE974D00CEFD55 /* O2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FD716CE974D00CEFD55 /* O2AppDelegate.m */; };
 		CEAC4FDA16CE974D00CEFD55 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAC4FD916CE974D00CEFD55 /* Default.png */; };
@@ -19,6 +20,9 @@
 		CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE516CE987300CEFD55 /* FirstViewController.m */; };
 		CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE816CE988700CEFD55 /* SecondViewController.m */; };
 		CEACDCE816D42FB4007A1A03 /* O2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEACDCE716D42FB4007A1A03 /* O2Cell.m */; };
+		CEB612FB16DBDB0F00F257C4 /* pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB612FA16DBDB0F00F257C4 /* pattern.png */; };
+		CEB612FF16DBE2CE00F257C4 /* fruits_little.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB612FE16DBE2CE00F257C4 /* fruits_little.png */; };
+		CEB6130216DBF7E800F257C4 /* SectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB6130116DBF7E800F257C4 /* SectionHeader.m */; };
 		CEB8321916DABF4F00B0F6F7 /* acorn_squash.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB831FC16DABF4F00B0F6F7 /* acorn_squash.png */; };
 		CEB8321A16DABF4F00B0F6F7 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB831FD16DABF4F00B0F6F7 /* apple.png */; };
 		CEB8321B16DABF4F00B0F6F7 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB831FE16DABF4F00B0F6F7 /* banana.png */; };
@@ -54,12 +58,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CEAC3EA616DBBCEF008CDDC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEAC3EA816DBBD0F008CDDC9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEAC3EA916DBBD1A008CDDC9 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEAC3EAB16DBBE7C008CDDC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEAC3EAD16DBBE91008CDDC9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEAC3EAE16DBBEA6008CDDC9 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CEAC4FC316CE974D00CEFD55 /* Oska2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oska2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEAC4FC716CE974D00CEFD55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEAC4FC916CE974D00CEFD55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CEAC4FCB16CE974D00CEFD55 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CEAC4FCF16CE974D00CEFD55 /* Oska2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Oska2-Info.plist"; sourceTree = "<group>"; };
-		CEAC4FD116CE974D00CEFD55 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CEAC4FCF16CE974D00CEFD55 /* Oska2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Oska2-Info.plist"; sourceTree = "<group>"; };
 		CEAC4FD316CE974D00CEFD55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CEAC4FD516CE974D00CEFD55 /* Oska2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Oska2-Prefix.pch"; sourceTree = "<group>"; };
 		CEAC4FD616CE974D00CEFD55 /* O2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = O2AppDelegate.h; sourceTree = "<group>"; };
@@ -73,6 +82,10 @@
 		CEAC4FE816CE988700CEFD55 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		CEACDCE616D42FB3007A1A03 /* O2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = O2Cell.h; sourceTree = "<group>"; };
 		CEACDCE716D42FB4007A1A03 /* O2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = O2Cell.m; sourceTree = "<group>"; };
+		CEB612FA16DBDB0F00F257C4 /* pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern.png; sourceTree = "<group>"; };
+		CEB612FE16DBE2CE00F257C4 /* fruits_little.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fruits_little.png; sourceTree = "<group>"; };
+		CEB6130016DBF7E700F257C4 /* SectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionHeader.h; sourceTree = "<group>"; };
+		CEB6130116DBF7E800F257C4 /* SectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionHeader.m; sourceTree = "<group>"; };
 		CEB831FC16DABF4F00B0F6F7 /* acorn_squash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acorn_squash.png; sourceTree = "<group>"; };
 		CEB831FD16DABF4F00B0F6F7 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
 		CEB831FE16DABF4F00B0F6F7 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banana.png; sourceTree = "<group>"; };
@@ -157,12 +170,12 @@
 			children = (
 				CEAC4FD616CE974D00CEFD55 /* O2AppDelegate.h */,
 				CEAC4FD716CE974D00CEFD55 /* O2AppDelegate.m */,
-				CEAC4FCE16CE974D00CEFD55 /* Supporting Files */,
 				CEAC4FE416CE987300CEFD55 /* FirstViewController.h */,
 				CEAC4FE516CE987300CEFD55 /* FirstViewController.m */,
 				CEB8324416DAF98400B0F6F7 /* FirstViewControllerContent */,
 				CEAC4FE716CE988700CEFD55 /* SecondViewController.h */,
 				CEAC4FE816CE988700CEFD55 /* SecondViewController.m */,
+				CEAC4FCE16CE974D00CEFD55 /* Supporting Files */,
 				CEB831FB16DABF4F00B0F6F7 /* Resources */,
 			);
 			path = Oska2;
@@ -171,8 +184,9 @@
 		CEAC4FCE16CE974D00CEFD55 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CEAC3EA516DBBCEF008CDDC9 /* InfoPlist.strings */,
+				CEAC3EAA16DBBE7C008CDDC9 /* Localizable.strings */,
 				CEAC4FCF16CE974D00CEFD55 /* Oska2-Info.plist */,
-				CEAC4FD016CE974D00CEFD55 /* InfoPlist.strings */,
 				CEAC4FD316CE974D00CEFD55 /* main.m */,
 				CEAC4FD516CE974D00CEFD55 /* Oska2-Prefix.pch */,
 				CEAC4FD916CE974D00CEFD55 /* Default.png */,
@@ -185,6 +199,8 @@
 		CEB831FB16DABF4F00B0F6F7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEB612FE16DBE2CE00F257C4 /* fruits_little.png */,
+				CEB612FA16DBDB0F00F257C4 /* pattern.png */,
 				CEB831FC16DABF4F00B0F6F7 /* acorn_squash.png */,
 				CEB831FD16DABF4F00B0F6F7 /* apple.png */,
 				CEB831FE16DABF4F00B0F6F7 /* banana.png */,
@@ -222,6 +238,8 @@
 			children = (
 				CEB8323616DAC5A900B0F6F7 /* Header.h */,
 				CEB8323716DAC5A900B0F6F7 /* Header.m */,
+				CEB6130016DBF7E700F257C4 /* SectionHeader.h */,
+				CEB6130116DBF7E800F257C4 /* SectionHeader.m */,
 				CEACDCE616D42FB3007A1A03 /* O2Cell.h */,
 				CEACDCE716D42FB4007A1A03 /* O2Cell.m */,
 				CEB8323B16DAF16600B0F6F7 /* FirstDetailViewController.h */,
@@ -261,7 +279,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = O2;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Neru;
 			};
 			buildConfigurationList = CEAC4FBD16CE974D00CEFD55 /* Build configuration list for PBXProject "Oska2" */;
@@ -270,6 +288,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
+				pl,
 			);
 			mainGroup = CEAC4FB816CE974D00CEFD55;
 			productRefGroup = CEAC4FC416CE974D00CEFD55 /* Products */;
@@ -286,7 +306,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEAC4FD216CE974D00CEFD55 /* InfoPlist.strings in Resources */,
 				CEAC4FDA16CE974D00CEFD55 /* Default.png in Resources */,
 				CEAC4FDC16CE974E00CEFD55 /* Default@2x.png in Resources */,
 				CEAC4FDE16CE974E00CEFD55 /* Default-568h@2x.png in Resources */,
@@ -318,6 +337,10 @@
 				CEB8323316DABF4F00B0F6F7 /* tomato.png in Resources */,
 				CEB8323416DABF4F00B0F6F7 /* watermelon.png in Resources */,
 				CEB8323516DABF4F00B0F6F7 /* cucumber.png in Resources */,
+				CEAC3EA716DBBCEF008CDDC9 /* InfoPlist.strings in Resources */,
+				CEAC3EAC16DBBE7C008CDDC9 /* Localizable.strings in Resources */,
+				CEB612FB16DBDB0F00F257C4 /* pattern.png in Resources */,
+				CEB612FF16DBE2CE00F257C4 /* fruits_little.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,18 +360,31 @@
 				CEB8323D16DAF16600B0F6F7 /* FirstDetailViewController.m in Sources */,
 				CEB8324016DAF2F200B0F6F7 /* AddItemViewController.m in Sources */,
 				CEB8324316DAF7AF00B0F6F7 /* CustomNavigationController.m in Sources */,
+				CEB6130216DBF7E800F257C4 /* SectionHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CEAC4FD016CE974D00CEFD55 /* InfoPlist.strings */ = {
+		CEAC3EA516DBBCEF008CDDC9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CEAC4FD116CE974D00CEFD55 /* en */,
+				CEAC3EA616DBBCEF008CDDC9 /* en */,
+				CEAC3EA816DBBD0F008CDDC9 /* de */,
+				CEAC3EA916DBBD1A008CDDC9 /* pl */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CEAC3EAA16DBBE7C008CDDC9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEAC3EAB16DBBE7C008CDDC9 /* en */,
+				CEAC3EAD16DBBE91008CDDC9 /* de */,
+				CEAC3EAE16DBBEA6008CDDC9 /* pl */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

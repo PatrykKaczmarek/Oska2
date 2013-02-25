@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AddItemViewController.h"
+#import "FirstViewController.h"
 
 @interface CustomNavigationController : UINavigationController
+{
+    
+}
 
 @end

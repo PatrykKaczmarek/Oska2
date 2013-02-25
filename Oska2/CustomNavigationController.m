@@ -23,7 +23,27 @@
     }
     return self;
 }
+/////////////////////////////////////////////////////////////////////////////////
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
+    [[UITabBar appearance] setTintColor:[UIColor brownColor]];
+    
+}
+/////////////////////////////////////////////////////////////////////////////////
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/////////////////////////////////////////////////////////////////////////////////
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
 	if([[self.viewControllers lastObject] class] == [AddItemViewController class])
@@ -31,7 +51,7 @@
         
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration: 1.00];
-		[UIView setAnimationTransition:UIViewAnimationTransitionCurlDown
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
                                forView:self.view cache:NO];
         
 		UIViewController *viewController = [super popViewControllerAnimated:NO];
@@ -46,16 +66,6 @@
 	}
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+/////////////////////////////////////////////////////////////////////////////////
 
 @end

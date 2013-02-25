@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FirstViewController.h"
 
-@interface AddItemViewController : UIViewController
+@interface AddItemViewController : UIViewController <UITextFieldDelegate>
+{
+    UIImageView *_addImageView;
+    UIImageView *_choiseOfImagesImageView;
+    UITextField *_addTextField;
+    UITextView *_commentTextView;
+    UIButton *_addItemButton;
+    UIButton *_addImageButton;
+}
+
 
 @end

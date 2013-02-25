@@ -18,8 +18,9 @@
         [self setBackgroundColor:[UIColor clearColor]];
         
         _headerLabel = [[UILabel alloc] init];
-        [_headerLabel setText:NSLocalizedString(@"Your storehouse", nil)];
+        [_headerLabel setText:NSLocalizedString(@"Your pantry", nil)];
         [_headerLabel setFont:[UIFont fontWithName:@"Palatino-Italic" size:25.0f]];
+        [_headerLabel setTextColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [_headerLabel setBackgroundColor:[UIColor clearColor]];
         [_headerLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:_headerLabel];
