@@ -35,13 +35,13 @@
     [super viewDidLoad];
     
     //UIBarButtonItem:
-    _editBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editRecord)];
+    _editBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editRecord)];
     self.navigationItem.leftBarButtonItem = _editBarButtonItem;
     _addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRecord)];
     self.navigationItem.rightBarButtonItem = _addBarButtonItem;
     
     //UIAlertView:
-    _addRecordAlertView = [[UIAlertView alloc] initWithTitle:@"Add Record" message:@"Please add your data" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add to fruits",@"Add to vegetables", nil];
+    _addRecordAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Record", nil) message:NSLocalizedString(@"Please add you data", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Add to fruits", nil),NSLocalizedString(@"Add to vegetables", nil), nil];
     [_addRecordAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     
     //    _chooseRecordDestinationAlertView = [[UIAlertView alloc] initWithTitle:@"Destination" message:@"Where you want to put this data?" delegate:self cancelButtonTitle:@"Fruits" otherButtonTitles:@"Vegetables", nil];
@@ -58,7 +58,7 @@
     [_tableView setDataSource:self];
     [self.view addSubview:_tableView];
     
-    _headerView = [[Header alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 50.0f)];
+    _headerView = [[FirstHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 50.0f)];
     _tableView.tableHeaderView = _headerView;
     
     //    newDateString = [self getTime];
@@ -66,8 +66,8 @@
                                                    dateStyle:NSDateFormatterNoStyle
                                                    timeStyle:NSDateFormatterShortStyle];
     
-    dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:@"apple", @"banana", @"pineapple", @"strawberry", @"watermelon", nil];
-    dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:@"carrot", @"tomato", @"cucumber", nil];
+    dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"apple", nil), NSLocalizedString(@"banana", nil), NSLocalizedString(@"pineapple", nil), NSLocalizedString(@"strawberry", nil), NSLocalizedString(@"watermelon", nil), nil];
+    dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"carrot", nil), NSLocalizedString(@"tomato", nil), NSLocalizedString(@"cucumber", nil), nil];
     ImagesOfFruitArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"apple"],
                                                                  [UIImage imageNamed:@"banana"],
                                                                  [UIImage imageNamed:@"pineapple"],
@@ -93,13 +93,8 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    SectionHeader *sectionHeader;
     
     [_tableView setFrame:self.view.frame];
-    [sectionHeader setFrame:CGRectMake(0.0f,
-                                       0.0f,
-                                       CGRectGetWidth(_tableView.frame),
-                                       40.0f)];
 }
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -316,23 +311,9 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{   
-//    switch (section) {
-//        case 0:
-//            return NSLocalizedString(@"Fruits", nil);
-//        case 1:
-//            return NSLocalizedString(@"Vegetables", nil);
-//        default:
-//            return @"";
-//    }
-//}
-
-/////////////////////////////////////////////////////////////////////////////////
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    SectionHeader *sectionHeader;   
-    sectionHeader = [[SectionHeader alloc] init];
+    SectionHeader *sectionHeader = [[SectionHeader alloc] init];
         
     switch (section)
     {

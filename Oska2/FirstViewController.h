@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "O2Cell.h"
 #import "SecondViewController.h"
-#import "Header.h"
+#import "FirstHeaderView.h"
 #import "SectionHeader.h"
 #import "FirstDetailViewController.h"
 #import "AddItemViewController.h"

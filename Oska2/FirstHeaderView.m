@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Neru. All rights reserved.
 //
 
-#import "Header.h"
+#import "FirstHeaderView.h"
 
-@implementation Header
+@implementation FirstHeaderView
 
 - (id)initWithFrame:(CGRect)frame
 {

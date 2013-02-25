@@ -51,7 +51,7 @@
 		CEB8323316DABF4F00B0F6F7 /* tomato.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8321616DABF4F00B0F6F7 /* tomato.png */; };
 		CEB8323416DABF4F00B0F6F7 /* watermelon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8321716DABF4F00B0F6F7 /* watermelon.png */; };
 		CEB8323516DABF4F00B0F6F7 /* cucumber.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB8321816DABF4F00B0F6F7 /* cucumber.png */; };
-		CEB8323816DAC5A900B0F6F7 /* Header.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB8323716DAC5A900B0F6F7 /* Header.m */; };
+		CEB8323816DAC5A900B0F6F7 /* FirstHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB8323716DAC5A900B0F6F7 /* FirstHeaderView.m */; };
 		CEB8323D16DAF16600B0F6F7 /* FirstDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB8323C16DAF16600B0F6F7 /* FirstDetailViewController.m */; };
 		CEB8324016DAF2F200B0F6F7 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB8323F16DAF2F100B0F6F7 /* AddItemViewController.m */; };
 		CEB8324316DAF7AF00B0F6F7 /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB8324216DAF7AF00B0F6F7 /* CustomNavigationController.m */; };
@@ -114,8 +114,8 @@
 		CEB8321616DABF4F00B0F6F7 /* tomato.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tomato.png; sourceTree = "<group>"; };
 		CEB8321716DABF4F00B0F6F7 /* watermelon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermelon.png; sourceTree = "<group>"; };
 		CEB8321816DABF4F00B0F6F7 /* cucumber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cucumber.png; sourceTree = "<group>"; };
-		CEB8323616DAC5A900B0F6F7 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		CEB8323716DAC5A900B0F6F7 /* Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Header.m; sourceTree = "<group>"; };
+		CEB8323616DAC5A900B0F6F7 /* FirstHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstHeaderView.h; sourceTree = "<group>"; };
+		CEB8323716DAC5A900B0F6F7 /* FirstHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstHeaderView.m; sourceTree = "<group>"; };
 		CEB8323B16DAF16600B0F6F7 /* FirstDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstDetailViewController.h; sourceTree = "<group>"; };
 		CEB8323C16DAF16600B0F6F7 /* FirstDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstDetailViewController.m; sourceTree = "<group>"; };
 		CEB8323E16DAF2F100B0F6F7 /* AddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemViewController.h; sourceTree = "<group>"; };
@@ -142,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				CEAC4FCD16CE974D00CEFD55 /* Oska2 */,
+				CEAC4FCE16CE974D00CEFD55 /* Supporting Files */,
+				CEB831FB16DABF4F00B0F6F7 /* Resources */,
 				CEAC4FC616CE974D00CEFD55 /* Frameworks */,
 				CEAC4FC416CE974D00CEFD55 /* Products */,
 			);
@@ -170,13 +172,9 @@
 			children = (
 				CEAC4FD616CE974D00CEFD55 /* O2AppDelegate.h */,
 				CEAC4FD716CE974D00CEFD55 /* O2AppDelegate.m */,
-				CEAC4FE416CE987300CEFD55 /* FirstViewController.h */,
-				CEAC4FE516CE987300CEFD55 /* FirstViewController.m */,
-				CEB8324416DAF98400B0F6F7 /* FirstViewControllerContent */,
-				CEAC4FE716CE988700CEFD55 /* SecondViewController.h */,
-				CEAC4FE816CE988700CEFD55 /* SecondViewController.m */,
-				CEAC4FCE16CE974D00CEFD55 /* Supporting Files */,
-				CEB831FB16DABF4F00B0F6F7 /* Resources */,
+				CEAED86416DD199F00ABDA12 /* Firsts */,
+				CEAED86716DD19FF00ABDA12 /* FirstDetail */,
+				CEAED86816DD1A3E00ABDA12 /* Second */,
 			);
 			path = Oska2;
 			sourceTree = "<group>";
@@ -194,6 +192,57 @@
 				CEAC4FDD16CE974E00CEFD55 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			path = Oska2;
+			sourceTree = "<group>";
+		};
+		CEAED86416DD199F00ABDA12 /* Firsts */ = {
+			isa = PBXGroup;
+			children = (
+				CEAC4FE416CE987300CEFD55 /* FirstViewController.h */,
+				CEAC4FE516CE987300CEFD55 /* FirstViewController.m */,
+				CEB8324116DAF7AE00B0F6F7 /* CustomNavigationController.h */,
+				CEB8324216DAF7AF00B0F6F7 /* CustomNavigationController.m */,
+				CEAED86616DD19E100ABDA12 /* NewItem */,
+				CEAED86516DD19C100ABDA12 /* Cells */,
+				CEB8324416DAF98400B0F6F7 /* Views */,
+			);
+			name = Firsts;
+			sourceTree = "<group>";
+		};
+		CEAED86516DD19C100ABDA12 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CEACDCE616D42FB3007A1A03 /* O2Cell.h */,
+				CEACDCE716D42FB4007A1A03 /* O2Cell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		CEAED86616DD19E100ABDA12 /* NewItem */ = {
+			isa = PBXGroup;
+			children = (
+				CEB8323E16DAF2F100B0F6F7 /* AddItemViewController.h */,
+				CEB8323F16DAF2F100B0F6F7 /* AddItemViewController.m */,
+			);
+			name = NewItem;
+			sourceTree = "<group>";
+		};
+		CEAED86716DD19FF00ABDA12 /* FirstDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CEB8323B16DAF16600B0F6F7 /* FirstDetailViewController.h */,
+				CEB8323C16DAF16600B0F6F7 /* FirstDetailViewController.m */,
+			);
+			name = FirstDetail;
+			sourceTree = "<group>";
+		};
+		CEAED86816DD1A3E00ABDA12 /* Second */ = {
+			isa = PBXGroup;
+			children = (
+				CEAC4FE716CE988700CEFD55 /* SecondViewController.h */,
+				CEAC4FE816CE988700CEFD55 /* SecondViewController.m */,
+			);
+			name = Second;
 			sourceTree = "<group>";
 		};
 		CEB831FB16DABF4F00B0F6F7 /* Resources */ = {
@@ -230,26 +279,19 @@
 				CEB8321716DABF4F00B0F6F7 /* watermelon.png */,
 				CEB8321816DABF4F00B0F6F7 /* cucumber.png */,
 			);
-			path = Resources;
+			name = Resources;
+			path = Oska2/Resources;
 			sourceTree = "<group>";
 		};
-		CEB8324416DAF98400B0F6F7 /* FirstViewControllerContent */ = {
+		CEB8324416DAF98400B0F6F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CEB8323616DAC5A900B0F6F7 /* Header.h */,
-				CEB8323716DAC5A900B0F6F7 /* Header.m */,
+				CEB8323616DAC5A900B0F6F7 /* FirstHeaderView.h */,
+				CEB8323716DAC5A900B0F6F7 /* FirstHeaderView.m */,
 				CEB6130016DBF7E700F257C4 /* SectionHeader.h */,
 				CEB6130116DBF7E800F257C4 /* SectionHeader.m */,
-				CEACDCE616D42FB3007A1A03 /* O2Cell.h */,
-				CEACDCE716D42FB4007A1A03 /* O2Cell.m */,
-				CEB8323B16DAF16600B0F6F7 /* FirstDetailViewController.h */,
-				CEB8323C16DAF16600B0F6F7 /* FirstDetailViewController.m */,
-				CEB8323E16DAF2F100B0F6F7 /* AddItemViewController.h */,
-				CEB8323F16DAF2F100B0F6F7 /* AddItemViewController.m */,
-				CEB8324116DAF7AE00B0F6F7 /* CustomNavigationController.h */,
-				CEB8324216DAF7AF00B0F6F7 /* CustomNavigationController.m */,
 			);
-			name = FirstViewControllerContent;
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,7 +398,7 @@
 				CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */,
 				CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */,
 				CEACDCE816D42FB4007A1A03 /* O2Cell.m in Sources */,
-				CEB8323816DAC5A900B0F6F7 /* Header.m in Sources */,
+				CEB8323816DAC5A900B0F6F7 /* FirstHeaderView.m in Sources */,
 				CEB8323D16DAF16600B0F6F7 /* FirstDetailViewController.m in Sources */,
 				CEB8324016DAF2F200B0F6F7 /* AddItemViewController.m in Sources */,
 				CEB8324316DAF7AF00B0F6F7 /* CustomNavigationController.m in Sources */,

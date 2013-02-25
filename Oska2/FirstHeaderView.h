@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FirstViewController.h"
 
-@interface Header : UIView
+@interface FirstHeaderView : UIView
 {
     UILabel *_headerLabel;
     UIImageView *_headerImageLeft;

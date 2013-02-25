@@ -8,6 +8,8 @@
 
 #import "AddItemViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface AddItemViewController ()
 
 @end
@@ -19,7 +21,6 @@
     self = [super init];
     if (self) 
     {
-        // Custom initialization
         [self setTitle:(NSLocalizedString(@"New Item", nil))];
         [self.view setBackgroundColor:[UIColor yellowColor]];
     }
@@ -41,11 +42,10 @@
     [_addTextField setDelegate:self];
     [self.view addSubview:_addTextField];
     
-    _addItemButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _addItemButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_addItemButton.layer setCornerRadius:8.0f];
     [_addItemButton setTitle:(NSLocalizedString(@"Add", nil)) forState:UIControlStateNormal];
-//    [_addItemButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_addItemButton setBackgroundColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
-//    [_addItemButton setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:_addItemButton];
     
     _addImageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -67,17 +67,25 @@
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    [_addTextField setFrame:CGRectMake(100.0f,
-                                       20.0f,
-                                       CGRectGetMaxX(self.view.frame) - CGRectGetWidth(_addImageButton.frame) - 50.0f,
-                                       30.0f)];
-    [_addItemButton setFrame:CGRectMake(CGRectGetMinX(self.view.frame) + 20.0f,
-                                        CGRectGetMaxY(self.view.frame) - 20.0f - CGRectGetHeight(_addItemButton.frame),
-                                        CGRectGetMaxX(self.view.frame) - 40.0f,
-                                        20.0f)];
-    [_addImageButton setFrame:CGRectMake(20.0f, 20.0f, 70.0f, 70.0f)];
     
-
+    CGFloat margin = 10.0f;
+    CGSize addImageButtonSize = CGSizeMake(70.0f, 70.0f);
+    CGSize addItemButtonSize = CGSizeMake(CGRectGetMaxX(self.view.frame) - 2*margin, 35.0f);
+    
+    [_addImageButton setFrame:CGRectMake(margin,
+                                         margin,
+                                         addImageButtonSize.width,
+                                         addImageButtonSize.height)];
+    
+    [_addTextField setFrame:CGRectMake(CGRectGetMaxX(_addImageButton.frame) + margin,
+                                       CGRectGetMinY(_addImageButton.frame),
+                                       CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_addImageButton.frame) - 2*margin,
+                                       30.0f)];
+    
+    [_addItemButton setFrame:CGRectMake(margin,
+                                        CGRectGetMaxY(self.view.frame) - margin - addItemButtonSize.height,
+                                        addItemButtonSize.width,
+                                        addItemButtonSize.height)];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -86,6 +94,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UITextField delegate
 
 /////////////////////////////////////////////////////////////////////////////////
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
