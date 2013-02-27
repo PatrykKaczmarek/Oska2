@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EnhancedKeyboard.h"
 
-@interface AddItemAmountCell : UITableViewCell
+@interface AddItemAmountCell : UITableViewCell <UITextFieldDelegate>
+{
+    int amount;   
+}
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UIButton *leftPlusButton;
+@property (nonatomic, strong) UIButton *rightMinusButton;
+
+@property (nonatomic, strong) EnhancedKeyboard *enhancedKeyboard;
 
 @end

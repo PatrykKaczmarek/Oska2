@@ -10,20 +10,51 @@
 
 @implementation AddItemTextCell
 
+/////////////////////////////////////////////////////////////////////////////////
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
+    if (self)
+    {
+//        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        _textField = [[UITextField alloc] init];
+        [_textField setBorderStyle:UITextBorderStyleNone];
+        [_textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+        [_textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+        [_textField setTextAlignment:NSTextAlignmentLeft];
+        [_textField setTextColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
+        [_textField setDelegate:self];
+        
+        [self addSubview:_textField];
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
+/////////////////////////////////////////////////////////////////////////////////
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated];
+//
+//    // Configure the view for the selected state
+//}
 
-    // Configure the view for the selected state
+/////////////////////////////////////////////////////////////////////////////////
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    [_textField setFrame:CGRectMake(CGRectGetMinX(self.contentView.frame),
+                                    CGRectGetMinY(self.contentView.frame),
+                                    CGRectGetWidth(self.contentView.frame),
+                                    CGRectGetHeight(self.contentView.frame))];
+    
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
+    [textField setInputAccessoryView:[self.enhancedKeyboard prevEnabled:YES nextEnabled:YES]];
+}
 @end

@@ -60,6 +60,8 @@
 -(void)nextDidClick:(id)sender
 {
     NSLog(@"Next");
+//    AddItemAmountCell *addItemAmountCell = [[AddItemAmountCell alloc] init];
+//    [addItemAmountCell.textField becomeFirstResponder];
 }
 
 

@@ -7,7 +7,6 @@
 //
 
 #import "AddItemViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface AddItemViewController ()
 
@@ -53,17 +52,6 @@
     _addTableView.backgroundView = backView;
     [self.view addSubview:_addTableView];
     
-    
-    _addTextField = [[UITextField alloc] init];
-    [_addTextField setBorderStyle:UITextBorderStyleRoundedRect];
-    [_addTextField setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [_addTextField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    [_addTextField setTextAlignment:NSTextAlignmentLeft];
-    [_addTextField setPlaceholder:(NSLocalizedString(@"Enter text here...", nil))];
-    [_addTextField setDelegate:self];
-    [_addTextField becomeFirstResponder];
-    [self.view addSubview:_addTextField];
-    
 //    _addItemButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [_addItemButton.layer setCornerRadius:8.0f];
 //    [_addItemButton setTitle:(NSLocalizedString(@"Add", nil)) forState:UIControlStateNormal];
@@ -82,11 +70,6 @@
 //    [_addImageView setImage:[UIImage imageNamed:@"noimage"]];
 //    [_addImageView setContentMode:UIViewContentModeScaleAspectFit];
 //    [self.view addSubview:_addImageView];
-    
-    //enhancedKeyboard:
-//    self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
-//    [self.enhancedKeyboard getToolbarWithPrevEnabled:YES NextEnabled:YES DoneEnabled:YES];
-
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -107,11 +90,6 @@
                                    CGRectGetMinY(_addImageButton.frame) - 10.0f,
                                    CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_addImageButton.frame) - 2*margin,
                                    225.0f)];
-    
-    [_addTextField setFrame:CGRectMake(margin,
-                                       CGRectGetMaxY(_addImageButton.frame) + margin,
-                                       70,
-                                       30.0f)];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -158,16 +136,61 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////////
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40.0f;
+}
+
+/////////////////////////////////////////////////////////////////////////////////
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell * cell = [[UITableViewCell alloc] init];
-    if (cell == nil)
+    UITableViewCell *cell;
+    AddItemTextCell *textCell;
+    AddItemAmountCell *amountCell;
+    static NSString *cellIdentifier1 = @"Cell1";
+    static NSString *cellIdentifier2 = @"Cell2";
+    
+    if ((indexPath.section == 1) && (indexPath.row == 0))
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        [cell setBackgroundColor:[UIColor redColor]];
+        if (cell == nil)
+        {
+            amountCell = [[AddItemAmountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
+//            [amountCell.textField setText:@"1"];
+            
+            NSLog(@"bylem w amountCell");
+        }
+        return amountCell;
+        
     }
-    return cell;
+    else
+    {
+        if (cell == nil)
+        {
+            textCell = [[AddItemTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
+            switch (indexPath.section)
+            {
+                case 0:
+                    [textCell.textField setPlaceholder:NSLocalizedString(@" Enter name here...", nil)];
+                    [textCell.textField becomeFirstResponder];
+                    break;
+                case 1:
+                    if (indexPath.row == 1)
+                    {
+                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter price here...", nil)];
+                        break;
+                    }
+                    else if (indexPath.row == 2)
+                    {
+                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter description here...", nil)];
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+        return textCell;
+    }
+//    return cell;
 }
 
 /////////////////////////////////////////////////////////////////////////////////

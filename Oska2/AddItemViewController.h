@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "FirstViewController.h"
 #import "EnhancedKeyboard.h"
+#import <QuartzCore/QuartzCore.h>
+#import "AddItemTextCell.h"
+#import "AddItemAmountCell.h"
 
 @interface AddItemViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     UIImageView *_addImageView;
     UIImageView *_choiseOfImagesImageView;
-    UITextField *_addTextField;
-    UITextView *_commentTextView;
     UIButton *_addItemButton;
     UIButton *_addImageButton;
 }
