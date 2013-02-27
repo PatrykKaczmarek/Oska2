@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FirstViewController.h"
+#import "EnhancedKeyboard.h"
 
-@interface AddItemViewController : UIViewController <UITextFieldDelegate>
+@interface AddItemViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     UIImageView *_addImageView;
     UIImageView *_choiseOfImagesImageView;
@@ -18,6 +19,9 @@
     UIButton *_addItemButton;
     UIButton *_addImageButton;
 }
+
+@property (nonatomic, strong) UITableView *addTableView;
+@property (nonatomic, strong) EnhancedKeyboard *enhancedKeyboard;
 
 
 @end
