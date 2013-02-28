@@ -21,4 +21,7 @@
 -(id)prevEnabled:(BOOL)prevEnabled nextEnabled:(BOOL)nextEnabled;
 @property (nonatomic, strong) id <EnhancedKeyboardDelegate> delegate;
 
+@property (nonatomic, strong) UIBarButtonItem *previousButton;
+@property (nonatomic, strong) UIBarButtonItem *nextButton;
+
 @end

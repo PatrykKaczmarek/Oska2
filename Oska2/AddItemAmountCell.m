@@ -31,6 +31,7 @@
         
         _rightMinusButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [_rightMinusButton setTitle:@"+" forState:UIControlStateNormal];
+        [_rightMinusButton setTintColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [_rightMinusButton addTarget:self
                             action:@selector(plusDidClick:)
                   forControlEvents:UIControlEventTouchUpInside];
@@ -38,6 +39,7 @@
         
         _leftPlusButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [_leftPlusButton setTitle:@"-" forState:UIControlStateNormal];
+        [_leftPlusButton setTintColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [_leftPlusButton addTarget:self
                               action:@selector(minusDidClick:)
                     forControlEvents:UIControlEventTouchUpInside];
@@ -88,8 +90,6 @@
 {
     self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
     [textField setInputAccessoryView:[self.enhancedKeyboard prevEnabled:YES nextEnabled:YES]];
-//    EnhancedKeyboard *enhancedKeyboard = [[EnhancedKeyboard alloc] init];
-//    [textField setInputAccessoryView:[enhancedKeyboard prevEnabled:YES nextEnabled:YES]];
     return YES;
 }
 

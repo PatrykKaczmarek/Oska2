@@ -18,10 +18,8 @@
                                                      UITableViewDelegate,
                                                      EnhancedKeyboardDelegate>
 {
-    UIImageView *_addImageView;
-    UIImageView *_choiseOfImagesImageView;
-    UIButton *_addItemButton;
     UIButton *_addImageButton;
+    NSMutableArray *_textFieldMutableArray;
 }
 
 @property (nonatomic, strong) UITableView *addTableView;

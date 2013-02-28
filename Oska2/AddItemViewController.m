@@ -29,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _textFieldMutableArray = [[NSMutableArray alloc] init];
  
 //    UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [customButton setBackgroundColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
@@ -40,7 +42,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                       target:self
                                                                       action:@selector(saveRecord)];
-    
    
     _addTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [_addTableView setDelegate:self];
@@ -70,9 +71,6 @@
 //    [_addImageView setImage:[UIImage imageNamed:@"noimage"]];
 //    [_addImageView setContentMode:UIViewContentModeScaleAspectFit];
 //    [self.view addSubview:_addImageView];
-    
-    self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
-    self.enhancedKeyboard.delegate = self;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -82,7 +80,6 @@
     
     CGFloat margin = 10.0f;
     CGSize addImageButtonSize = CGSizeMake(70.0f, 70.0f);
-//    CGSize addItemButtonSize = CGSizeMake(CGRectGetMaxX(self.view.frame) - 2*margin, 35.0f);
     
     [_addImageButton setFrame:CGRectMake(margin,
                                          margin,
@@ -158,11 +155,9 @@
         if (cell == nil)
         {
             amountCell = [[AddItemAmountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
-//            [amountCell.textField setText:@"1"];
-            
-            NSLog(@"bylem w amountCell");
         }
         [amountCell.textField setDelegate:self];
+        [_textFieldMutableArray insertObject:(amountCell.textField) atIndex:1];
         return amountCell;
         
     }
@@ -174,18 +169,22 @@
             switch (indexPath.section)
             {
                 case 0:
-                    [textCell.textField setPlaceholder:NSLocalizedString(@" Enter name here...", nil)];
+                    [textCell.textField setPlaceholder:NSLocalizedString(@" Enter name here", nil)];
                     [textCell.textField becomeFirstResponder];
+                    [_textFieldMutableArray insertObject:(textCell.textField) atIndex:0];
                     break;
                 case 1:
                     if (indexPath.row == 1)
                     {
-                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter price here...", nil)];
+                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter price here", nil)];
+                        [textCell.textField setKeyboardType:UIKeyboardTypeNumberPad];
+                        [_textFieldMutableArray insertObject:(textCell.textField) atIndex:2];
                         break;
                     }
                     else if (indexPath.row == 2)
                     {
-                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter description here...", nil)];
+                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter description here", nil)];
+                        [_textFieldMutableArray insertObject:(textCell.textField) atIndex:3];
                         break;
                     }
                 default:
@@ -193,6 +192,8 @@
             }
         }
         [textCell.textField setDelegate:self];
+        [self.enhancedKeyboard.nextButton setEnabled:YES];
+        [self.enhancedKeyboard.previousButton setEnabled:NO];
         return textCell;
     }
 }
@@ -205,31 +206,50 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
+    self.enhancedKeyboard.delegate = self;
     [textField setInputAccessoryView:[self.enhancedKeyboard prevEnabled:YES nextEnabled:YES]];
-}
-
-/////////////////////////////////////////////////////////////////////////////////
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    return YES;
-}
-
-/////////////////////////////////////////////////////////////////////////////////
--(BOOL)textFieldShouldClear:(UITextField *)textField
-{
-    return YES;
+    
+    if ([[_textFieldMutableArray objectAtIndex:0] isEditing])
+    {
+        [self.enhancedKeyboard.previousButton setEnabled:NO];
+        [self.enhancedKeyboard.nextButton setEnabled:YES];
+    }
+    if ([[_textFieldMutableArray objectAtIndex:[_textFieldMutableArray count] -1] isEditing])
+    {
+        [self.enhancedKeyboard.previousButton setEnabled:YES];
+        [self.enhancedKeyboard.nextButton setEnabled:NO];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 
 -(void)nextDidTouchUpInside
 {
-    NSLog(@"dsfsdf");
+    int i;
+
+    for (i=0; i<[_textFieldMutableArray count]; i++)
+    {
+        if ([[_textFieldMutableArray objectAtIndex:i] isEditing] && (i!=[_textFieldMutableArray count] -1))
+        {
+            [[_textFieldMutableArray objectAtIndex:i+1]  becomeFirstResponder];
+            break;
+        }
+    }
 }
 
+/////////////////////////////////////////////////////////////////////////////////
 -(void)prevDidTouchUpInside
 {
-    NSLog(@"dsfsdf");
+    int i;
+
+    for (i=0; i<[_textFieldMutableArray count]; i++)
+    {
+        if ([[_textFieldMutableArray objectAtIndex:i] isEditing] && (i!=0))
+        {
+            [[_textFieldMutableArray objectAtIndex:i-1]  becomeFirstResponder];
+            break;
+        }
+    }
 }
 
 @end

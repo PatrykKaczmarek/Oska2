@@ -16,7 +16,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-//        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
         _textField = [[UITextField alloc] init];
         [_textField setBorderStyle:UITextBorderStyleNone];
@@ -48,7 +48,6 @@
                                     CGRectGetMinY(self.contentView.frame),
                                     CGRectGetWidth(self.contentView.frame),
                                     CGRectGetHeight(self.contentView.frame))];
-    
 }
 
 /////////////////////////////////////////////////////////////////////////////////

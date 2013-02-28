@@ -47,7 +47,6 @@
     
     CGSize mainLabelSize = [_mainLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.contentView.frame) - 20.0f, MAXFLOAT)];
     CGSize detailLabelSize = [_detailLabel sizeThatFits:CGSizeMake(CGRectGetWidth(self.contentView.frame) - 20.0f, MAXFLOAT)];
-//    CGSize o2ImageviewSize = [_o2ImageView sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)]; //wykomentowane poniewaz chce miec stala wielkosc obrazka _o2ImageView 32 x 32 - zeby niestandardowe obrazki dopasowywaly sie zgodnie z UIViewContentModeScaleAspectFit
     
     [_mainLabel setFrame:CGRectMake(CGRectGetMinX(self.contentView.frame) + 10.0f,
                                     CGRectGetMinY(self.contentView.frame) + 10.0f,
@@ -64,7 +63,6 @@
                                       32.0f,
                                       32.0f)];
 }
-
 //(CGRectGetMaxX(self.contentView.frame) - CGRectGetWidth(_o2ImageView.frame) - 40.0f)
 //CGRectGetMinX(_o2ImageView.frame) - CGRectGetMinX(self.contentView.frame) - 15.0f
 

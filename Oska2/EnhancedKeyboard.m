@@ -17,51 +17,45 @@
     [toolbar setBarStyle:UIBarStyleBlackTranslucent];
     [toolbar sizeToFit];
     
-    NSMutableArray *toolbarItems = [[NSMutableArray alloc] init];
+    NSMutableArray *toolbarButtons = [[NSMutableArray alloc] init];
     
-    UISegmentedControl *leftItems = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Previous", nil),  nil]];
-    leftItems.segmentedControlStyle = UISegmentedControlStyleBar;
-    [leftItems setEnabled:prevEnabled forSegmentAtIndex:0];
-    leftItems.momentary = YES;
-    [leftItems addTarget:self
-                  action:@selector(previousDidClick:)
-        forControlEvents:UIControlEventValueChanged];
-    UIBarButtonItem *prevControl = [[UIBarButtonItem alloc] initWithCustomView:leftItems];
-    [toolbarItems addObject:prevControl];
+    _previousButton = [[UIBarButtonItem alloc] initWithTitle:@"Previous"
+                                                       style:UIBarButtonItemStyleBordered
+                                                      target:self
+                                                      action:@selector(prevDidTouchUpInside:)];
+    [toolbarButtons addObject:_previousButton];
     
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                target:self
                                                                                action:nil];
-    [toolbarItems addObject:flexSpace];
+    [toolbarButtons addObject:flexSpace];
     
-    UISegmentedControl *rightItems = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Next", nil),  nil]];
-    rightItems.segmentedControlStyle = UISegmentedControlStyleBar;
-    [rightItems setEnabled:nextEnabled forSegmentAtIndex:0];
-    rightItems.momentary = YES;
-    [rightItems addTarget:self
-                  action:@selector(nextDidClick:)
-        forControlEvents:UIControlEventValueChanged];
+    _nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+                                                   style:UIBarButtonItemStyleBordered
+                                                  target:self
+                                                  action:@selector(nextDidTouchUpInside:)];
+    [toolbarButtons addObject:_nextButton];
     
-    UIBarButtonItem *nextControl = [[UIBarButtonItem alloc] initWithCustomView:rightItems];
-    [toolbarItems addObject:nextControl];
-    
-    toolbar.items = toolbarItems;
-    
+    toolbar.items = toolbarButtons;
     return toolbar;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
--(void)previousDidClick:(id)sender
-{   
-    NSLog(@"Prev");
-    [_delegate prevDidTouchUpInside];
+-(void)prevDidTouchUpInside:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(prevDidTouchUpInside)])
+    {
+        [_delegate prevDidTouchUpInside];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
--(void)nextDidClick:(id)sender
-{   
-    NSLog(@"Next");
-    [_delegate nextDidTouchUpInside];
+-(void)nextDidTouchUpInside:(id)sender
+{
+    if ([_delegate respondsToSelector:@selector(nextDidTouchUpInside)])
+    {
+        [_delegate nextDidTouchUpInside];
+    }
 }
 
 
