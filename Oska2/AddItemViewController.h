@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "FirstViewController.h"
 #import "EnhancedKeyboard.h"
-#import <QuartzCore/QuartzCore.h>
 #import "AddItemTextCell.h"
 #import "AddItemAmountCell.h"
 
-@interface AddItemViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface AddItemViewController : UIViewController <UITextFieldDelegate,
+                                                     UITableViewDataSource,
+                                                     UITableViewDelegate,
+                                                     EnhancedKeyboardDelegate>
 {
     UIImageView *_addImageView;
     UIImageView *_choiseOfImagesImageView;

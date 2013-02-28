@@ -70,6 +70,9 @@
 //    [_addImageView setImage:[UIImage imageNamed:@"noimage"]];
 //    [_addImageView setContentMode:UIViewContentModeScaleAspectFit];
 //    [self.view addSubview:_addImageView];
+    
+    self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
+    self.enhancedKeyboard.delegate = self;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -159,6 +162,7 @@
             
             NSLog(@"bylem w amountCell");
         }
+        [amountCell.textField setDelegate:self];
         return amountCell;
         
     }
@@ -188,9 +192,9 @@
                     break;
             }
         }
+        [textCell.textField setDelegate:self];
         return textCell;
     }
-//    return cell;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -217,4 +221,15 @@
 }
 
 /////////////////////////////////////////////////////////////////////////////////
+
+-(void)nextDidTouchUpInside
+{
+    NSLog(@"dsfsdf");
+}
+
+-(void)prevDidTouchUpInside
+{
+    NSLog(@"dsfsdf");
+}
+
 @end

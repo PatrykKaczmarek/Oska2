@@ -52,16 +52,16 @@
 
 /////////////////////////////////////////////////////////////////////////////////
 -(void)previousDidClick:(id)sender
-{
+{   
     NSLog(@"Prev");
+    [_delegate prevDidTouchUpInside];
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 -(void)nextDidClick:(id)sender
-{
+{   
     NSLog(@"Next");
-//    AddItemAmountCell *addItemAmountCell = [[AddItemAmountCell alloc] init];
-//    [addItemAmountCell.textField becomeFirstResponder];
+    [_delegate nextDidTouchUpInside];
 }
 
 

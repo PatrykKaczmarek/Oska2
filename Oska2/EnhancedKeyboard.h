@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol EnhancedKeyboardDelegate <NSObject>
+
+-(void)nextDidTouchUpInside;
+-(void)prevDidTouchUpInside;
+
+@end
+
+/////////////////////////////////////////////////////////////////////////////////
 @interface EnhancedKeyboard : NSObject
 
 -(id)prevEnabled:(BOOL)prevEnabled nextEnabled:(BOOL)nextEnabled;
+@property (nonatomic, strong) id <EnhancedKeyboardDelegate> delegate;
 
 @end
