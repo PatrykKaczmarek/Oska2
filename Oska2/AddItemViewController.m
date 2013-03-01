@@ -12,6 +12,7 @@
 
 @end
 
+// ================================================================================
 @implementation AddItemViewController
 
 - (id)init
@@ -25,7 +26,11 @@
     return self;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
+
+#pragma mark - View lifecycle
+
+// ================================================================================
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -67,13 +72,9 @@
     [_addImageButton setTitleColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0] forState:UIControlStateNormal];
     [self.view addSubview:_addImageButton];
     
-//    _addImageView = [[UIImageView alloc] init];
-//    [_addImageView setImage:[UIImage imageNamed:@"noimage"]];
-//    [_addImageView setContentMode:UIViewContentModeScaleAspectFit];
-//    [self.view addSubview:_addImageView];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -92,13 +93,17 @@
                                    225.0f)];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
+
+#pragma mark - 
+
+// ================================================================================
 -(void)saveRecord
 {
     FirstViewController *firstViewController = [[FirstViewController alloc] init];
@@ -111,17 +116,17 @@
     [UIView commitAnimations];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - UITableView DataSource & Delegate
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section)
@@ -135,55 +140,60 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 40.0f;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    AddItemTextCell *textCell;
-    AddItemAmountCell *amountCell;
+    TextCell *textCell;
+    AmountCell *amountCell;
+    PriceCell *priceCell;
     static NSString *cellIdentifier1 = @"Cell1";
     static NSString *cellIdentifier2 = @"Cell2";
+    static NSString *cellIdentifier3 = @"Cell3";
     
     if ((indexPath.section == 1) && (indexPath.row == 0))
     {
         if (cell == nil)
         {
-            amountCell = [[AddItemAmountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
+            amountCell = [[AmountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
         }
         [amountCell.textField setDelegate:self];
         [_textFieldMutableArray insertObject:(amountCell.textField) atIndex:1];
         return amountCell;
+    }
+    else if ((indexPath.section == 1) && (indexPath.row == 1))
+    {
+        if (cell == nil)
+        {
+            priceCell = [[PriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
+        }
+        [priceCell.textField setDelegate:self];
+        [_textFieldMutableArray insertObject:(priceCell.textField) atIndex:2];
+        return priceCell;
         
     }
     else
     {
         if (cell == nil)
         {
-            textCell = [[AddItemTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
+            textCell = [[TextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
             switch (indexPath.section)
             {
                 case 0:
-                    [textCell.textField setPlaceholder:NSLocalizedString(@" Enter name here", nil)];
+                    [textCell.textField setPlaceholder:NSLocalizedString(@"Enter name here", nil)];
                     [textCell.textField becomeFirstResponder];
                     [_textFieldMutableArray insertObject:(textCell.textField) atIndex:0];
                     break;
                 case 1:
-                    if (indexPath.row == 1)
+                    if (indexPath.row == 2)
                     {
-                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter price here", nil)];
-                        [textCell.textField setKeyboardType:UIKeyboardTypeNumberPad];
-                        [_textFieldMutableArray insertObject:(textCell.textField) atIndex:2];
-                        break;
-                    }
-                    else if (indexPath.row == 2)
-                    {
-                        [textCell.textField setPlaceholder:NSLocalizedString(@" Enter description here", nil)];
+                        [textCell.textField setPlaceholder:NSLocalizedString(@"Enter description here", nil)];
                         [_textFieldMutableArray insertObject:(textCell.textField) atIndex:3];
                         break;
                     }
@@ -198,11 +208,11 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - UITextField delegate
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
@@ -221,8 +231,7 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
-
+// --------------------------------------------------------------------------------/
 -(void)nextDidTouchUpInside
 {
     int i;
@@ -237,7 +246,7 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)prevDidTouchUpInside
 {
     int i;
@@ -252,4 +261,12 @@
     }
 }
 
+// --------------------------------------------------------------------------------
+-(void)currencyButtonDidClick
+{
+    CurrencyPicker *actionSheet = [[CurrencyPicker alloc] init];
+    [actionSheet showInView:self.view];
+}
+
+// --------------------------------------------------------------------------------
 @end

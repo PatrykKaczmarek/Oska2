@@ -10,6 +10,7 @@
 
 @implementation SectionHeader
 
+// ================================================================================
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,7 +28,7 @@
     return self;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)layoutSubviews
 {
     [_sectionHeaderLabel setFrame:CGRectMake(0.0f,
@@ -36,18 +37,5 @@
                                              CGRectGetHeight(self.frame))];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section title:(NSString *)title
-//{
-//    _sectionHeaderLabel
-//}
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
+// --------------------------------------------------------------------------------
 @end

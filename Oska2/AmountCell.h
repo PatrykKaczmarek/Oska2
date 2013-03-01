@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "EnhancedKeyboard.h"
 
-@interface AddItemAmountCell : UITableViewCell <UITextFieldDelegate>
+@interface AmountCell : UITableViewCell <UITextFieldDelegate>
 {
-    int amount;   
+    int amount;
 }
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UIButton *leftPlusButton;

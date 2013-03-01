@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EnhancedKeyboard.h"
 
-@interface AddItemTextCell : UITableViewCell <UITextFieldDelegate>
+@interface TextCell : UITableViewCell <UITextFieldDelegate>
 {
     
 }

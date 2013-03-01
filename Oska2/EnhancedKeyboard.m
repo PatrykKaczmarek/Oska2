@@ -10,7 +10,7 @@
 
 @implementation EnhancedKeyboard
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 - (UIToolbar *)prevEnabled:(BOOL)prevEnabled nextEnabled:(BOOL)nextEnabled;
 {
     UIToolbar *toolbar = [[UIToolbar alloc] init];
@@ -40,7 +40,7 @@
     return toolbar;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)prevDidTouchUpInside:(id)sender
 {
     if ([_delegate respondsToSelector:@selector(prevDidTouchUpInside)])
@@ -49,7 +49,7 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)nextDidTouchUpInside:(id)sender
 {
     if ([_delegate respondsToSelector:@selector(nextDidTouchUpInside)])

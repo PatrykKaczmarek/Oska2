@@ -11,9 +11,11 @@
 @interface CustomNavigationController ()
 
 @end
+// ================================================================================
 
 @implementation CustomNavigationController
 
+// --------------------------------------------------------------------------------
 - (id)init
 {
     self = [super init];
@@ -23,27 +25,36 @@
     }
     return self;
 }
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
+
+#pragma mark - View lifecycle
+
+// ================================================================================
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     [[UINavigationBar appearance] setTintColor:[UIColor brownColor]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
     [[UITabBar appearance] setTintColor:[UIColor brownColor]];
+    [[UIToolbar appearance] setTintColor:[UIColor brownColor]];
+//    [[UIPickerView appearance] setBackgroundColor:[UIColor brownColor]];
+    
     
 }
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
+
+#pragma mark - UINavigation actions
+
+// ================================================================================
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated
 {
 	if([[self.viewControllers lastObject] class] == [AddItemViewController class])
@@ -66,6 +77,5 @@
 	}
 }
 
-/////////////////////////////////////////////////////////////////////////////////
-
+// --------------------------------------------------------------------------------
 @end

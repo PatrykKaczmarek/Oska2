@@ -10,7 +10,7 @@
 
 @implementation O2Cell
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -40,7 +40,7 @@
     return self;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -66,7 +66,7 @@
 //(CGRectGetMaxX(self.contentView.frame) - CGRectGetWidth(_o2ImageView.frame) - 40.0f)
 //CGRectGetMinX(_o2ImageView.frame) - CGRectGetMinX(self.contentView.frame) - 15.0f
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];

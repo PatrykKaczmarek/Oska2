@@ -15,7 +15,7 @@
 
 @end
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 @interface EnhancedKeyboard : NSObject
 
 -(id)prevEnabled:(BOOL)prevEnabled nextEnabled:(BOOL)nextEnabled;

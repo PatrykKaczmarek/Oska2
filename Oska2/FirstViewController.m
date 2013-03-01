@@ -12,9 +12,10 @@
 
 @end
 
+// ================================================================================
 @implementation FirstViewController
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (id)init
 {
     self = [super init];
@@ -25,11 +26,11 @@
     }
     return self;    
 }
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - View lifecycle
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -81,7 +82,7 @@
                                                                       nil];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];    
@@ -89,18 +90,18 @@
     [self showTabBar:self.tabBarController];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
     [_tableView setFrame:self.view.frame];
 }
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - UINavigationItem
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 -(void)editRecord
 {
     if (_editBarButtonItem.tag == 0)
@@ -120,7 +121,7 @@
     [_chooseRecordDestinationAlertView show];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)addRecord
 {
     AddItemViewController *addItemViewController = [[AddItemViewController alloc] init];
@@ -136,11 +137,11 @@
 //    [_addRecordAlertView show];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - UITabBarController
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 - (void) hideTabBar:(UITabBarController *) tabbarcontroller 
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -168,7 +169,7 @@
     [UIView commitAnimations];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (void) showTabBar:(UITabBarController *) tabbarcontroller
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -195,7 +196,7 @@
     [UIView commitAnimations];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     textFieldOutputString = _addRecordTextField.text;
@@ -214,11 +215,11 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - UITableView DataSource & Delegate
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     newDateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
@@ -236,7 +237,7 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"You clicked me! Section:%d, row:%d", indexPath.section, indexPath.row);
@@ -245,13 +246,13 @@
     [self.navigationController pushViewController:firstDetailViewController animated:YES];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     switch (section) {
@@ -264,7 +265,7 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     O2Cell *cell;
@@ -298,19 +299,19 @@
     return cell;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 40.0f;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 25.0f;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     SectionHeader *sectionHeader = [[SectionHeader alloc] init];
@@ -327,13 +328,13 @@
     return sectionHeader;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     switch (sourceIndexPath.section)
@@ -349,7 +350,7 @@
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -371,6 +372,5 @@
     [self.tableView reloadSections:_setAnimation withRowAnimation:UITableViewRowAnimationFade];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
-
+// --------------------------------------------------------------------------------
 @end

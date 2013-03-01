@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Neru. All rights reserved.
 //
 
-#import "AddItemTextCell.h"
+#import "TextCell.h"
 
-@implementation AddItemTextCell
+@implementation TextCell
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -31,7 +31,7 @@
     return self;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 //{
 //    [super setSelected:selected animated:animated];
@@ -39,18 +39,19 @@
 //    // Configure the view for the selected state
 //}
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    float margin = 10.0f;
 
-    [_textField setFrame:CGRectMake(CGRectGetMinX(self.contentView.frame),
+    [_textField setFrame:CGRectMake(CGRectGetMinX(self.contentView.frame) + margin,
                                     CGRectGetMinY(self.contentView.frame),
-                                    CGRectGetWidth(self.contentView.frame),
+                                    CGRectGetWidth(self.contentView.frame) - 2*margin,
                                     CGRectGetHeight(self.contentView.frame))];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];

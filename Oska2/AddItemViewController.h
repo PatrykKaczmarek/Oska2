@@ -10,8 +10,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FirstViewController.h"
 #import "EnhancedKeyboard.h"
-#import "AddItemTextCell.h"
-#import "AddItemAmountCell.h"
+#import "TextCell.h"
+#import "AmountCell.h"
+#import "PriceCell.h"
+#import "CurrencyPicker.h"
 
 @interface AddItemViewController : UIViewController <UITextFieldDelegate,
                                                      UITableViewDataSource,
@@ -25,5 +27,6 @@
 @property (nonatomic, strong) UITableView *addTableView;
 @property (nonatomic, strong) EnhancedKeyboard *enhancedKeyboard;
 
+-(void)currencyButtonDidClick;
 
 @end

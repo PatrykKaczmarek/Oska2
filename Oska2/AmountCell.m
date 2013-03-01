@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Neru. All rights reserved.
 //
 
-#import "AddItemAmountCell.h"
+#import "AmountCell.h"
 
-@implementation AddItemAmountCell
+@implementation AmountCell
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -48,7 +48,7 @@
     return self;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 //{
 //    [super setSelected:selected animated:animated];
@@ -56,7 +56,7 @@
 //    // Configure the view for the selected state
 //}
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -81,11 +81,11 @@
                                          rightPlusButtonSize.width,
                                          rightPlusButtonSize.height)];
 }
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - UITextField Delegate
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
@@ -93,11 +93,11 @@
     return YES;
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 
 #pragma mark - UIButtons
 
-/////////////////////////////////////////////////////////////////////////////////
+// ================================================================================
 -(void)plusDidClick:(id)sender
 {
     amount = [[_textField text] intValue];
@@ -105,7 +105,7 @@
     [_textField setText:[NSString stringWithFormat:@"%d", amount]];
 }
 
-/////////////////////////////////////////////////////////////////////////////////
+// --------------------------------------------------------------------------------
 -(void)minusDidClick:(id)sender
 {
     if ([[_textField text] intValue] >= 1)
@@ -114,7 +114,7 @@
         amount = amount - 1;
         [_textField setText:[NSString stringWithFormat:@"%d", amount]];
     }
-    
 }
 
+// --------------------------------------------------------------------------------
 @end
