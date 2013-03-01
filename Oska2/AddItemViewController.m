@@ -58,19 +58,24 @@
     _addTableView.backgroundView = backView;
     [self.view addSubview:_addTableView];
     
-//    _addItemButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [_addItemButton.layer setCornerRadius:8.0f];
-//    [_addItemButton setTitle:(NSLocalizedString(@"Add", nil)) forState:UIControlStateNormal];
-//    [_addItemButton setBackgroundColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
-//    [self.view addSubview:_addItemButton];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(AddImageBackgroundLabelDidTouch:)];
     
-    _addImageButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [_addImageButton setTitle:(NSLocalizedString(@"Add Image", nil)) forState:UIControlStateNormal];
-    [_addImageButton setBackgroundColor:[UIColor clearColor]];
-    [_addImageButton setBackgroundImage:[UIImage imageNamed:@"noicon"] forState:UIControlStateNormal];
+    _addImageBackgroundLabel = [[UILabel alloc] init];
+    [_addImageBackgroundLabel setBackgroundColor:[UIColor brownColor]];
+    [_addImageBackgroundLabel addGestureRecognizer:tapGestureRecognizer];
+    [_addImageBackgroundLabel setUserInteractionEnabled:YES];
+    [self.view addSubview:_addImageBackgroundLabel];
     
-    [_addImageButton setTitleColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0] forState:UIControlStateNormal];
-    [self.view addSubview:_addImageButton];
+    _addImageForegroundLabel = [[UILabel alloc] init];
+    [_addImageForegroundLabel setBackgroundColor:[UIColor yellowColor]];
+    [_addImageForegroundLabel setText:NSLocalizedString(@"Add \n image", nil)];
+    [_addImageForegroundLabel setNumberOfLines:2];
+    [_addImageForegroundLabel setTextColor:[UIColor brownColor]];
+    [_addImageForegroundLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.view addSubview:_addImageForegroundLabel];
+    
+//    [_addImageButton setTitleColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0] forState:UIControlStateNormal];
+//    [self.view addSubview:_addImageButton];
     
 }
 
@@ -80,16 +85,22 @@
     [super viewWillLayoutSubviews];
     
     CGFloat margin = 10.0f;
-    CGSize addImageButtonSize = CGSizeMake(70.0f, 70.0f);
+    CGSize addImageBackgroundLabelSize = CGSizeMake(70.0f, 70.0f);
     
-    [_addImageButton setFrame:CGRectMake(margin,
-                                         margin,
-                                         addImageButtonSize.width,
-                                         addImageButtonSize.height)];
+    [_addImageBackgroundLabel setFrame:CGRectMake(margin,
+                                                  margin,
+                                                  addImageBackgroundLabelSize.width,
+                                                  addImageBackgroundLabelSize.height)];
     
-    [_addTableView setFrame:CGRectMake(CGRectGetMaxX(_addImageButton.frame) + margin,
-                                   CGRectGetMinY(_addImageButton.frame) - 10.0f,
-                                   CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_addImageButton.frame) - 2*margin,
+    [_addImageForegroundLabel setFrame:CGRectMake(1.2*margin,
+                                                  1.2*margin,
+                                                  addImageBackgroundLabelSize.width - 0.4*margin,
+                                                  addImageBackgroundLabelSize.height - 0.4*margin)];
+    
+    
+    [_addTableView setFrame:CGRectMake(CGRectGetMaxX(_addImageBackgroundLabel.frame) + margin,
+                                   CGRectGetMinY(_addImageBackgroundLabel.frame) - 10.0f,
+                                   CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_addImageBackgroundLabel.frame) - 2*margin,
                                    225.0f)];
 }
 
@@ -261,12 +272,21 @@
     }
 }
 
-// --------------------------------------------------------------------------------
+// ================================================================================
+
+#pragma mark - ActionSheets - buttons
+
+// ================================================================================
 -(void)currencyButtonDidClick
 {
-    CurrencyPicker *actionSheet = [[CurrencyPicker alloc] init];
-    [actionSheet showInView:self.view];
+    CurrencyPicker *actionSheetCurrencyPicker = [[CurrencyPicker alloc] init];
+    [actionSheetCurrencyPicker showInView:self.view];
 }
 
 // --------------------------------------------------------------------------------
+-(void)AddImageBackgroundLabelDidTouch:(id)sender
+{
+    AddImage *actionSheetAddImage = [[AddImage alloc] init];
+    [actionSheetAddImage showInView:self.view];
+}
 @end

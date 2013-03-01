@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE9E791216E0D68900AEA5E4 /* CurrencyPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9E791116E0D68900AEA5E4 /* CurrencyPicker.m */; };
+		CEA521B916E12D7A00C0C0EE /* AddImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA521B816E12D7A00C0C0EE /* AddImage.m */; };
 		CEAC3EA716DBBCEF008CDDC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAC3EA516DBBCEF008CDDC9 /* InfoPlist.strings */; };
 		CEAC3EAC16DBBE7C008CDDC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEAC3EAA16DBBE7C008CDDC9 /* Localizable.strings */; };
 		CEAC4FC816CE974D00CEFD55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEAC4FC716CE974D00CEFD55 /* UIKit.framework */; };
@@ -65,6 +66,8 @@
 /* Begin PBXFileReference section */
 		CE9E791016E0D68900AEA5E4 /* CurrencyPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPicker.h; sourceTree = "<group>"; };
 		CE9E791116E0D68900AEA5E4 /* CurrencyPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPicker.m; sourceTree = "<group>"; };
+		CEA521B716E12D7A00C0C0EE /* AddImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddImage.h; sourceTree = "<group>"; };
+		CEA521B816E12D7A00C0C0EE /* AddImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddImage.m; sourceTree = "<group>"; };
 		CEAC3EA616DBBCEF008CDDC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAC3EA816DBBD0F008CDDC9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAC3EA916DBBD1A008CDDC9 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 			children = (
 				CE9E791016E0D68900AEA5E4 /* CurrencyPicker.h */,
 				CE9E791116E0D68900AEA5E4 /* CurrencyPicker.m */,
+				CEA521B716E12D7A00C0C0EE /* AddImage.h */,
+				CEA521B816E12D7A00C0C0EE /* AddImage.m */,
 			);
 			name = "Action Sheets";
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 				CEB7AD7A16DE8B5200ECC074 /* AmountCell.m in Sources */,
 				CEBA349E16E0238C000BF697 /* PriceCell.m in Sources */,
 				CE9E791216E0D68900AEA5E4 /* CurrencyPicker.m in Sources */,
+				CEA521B916E12D7A00C0C0EE /* AddImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

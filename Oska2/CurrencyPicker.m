@@ -10,6 +10,7 @@
 
 @implementation CurrencyPicker
 
+// ================================================================================
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
