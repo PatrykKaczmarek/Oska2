@@ -23,7 +23,7 @@
         [_textField setClearButtonMode:UITextFieldViewModeWhileEditing];
         [_textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
         [_textField setTextAlignment:NSTextAlignmentLeft];
-        [_textField setKeyboardType:UIKeyboardTypeNumberPad];
+        [_textField setKeyboardType:UIKeyboardTypeDecimalPad];
         [_textField setTextColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [_textField setPlaceholder:NSLocalizedString(@"Enter price here", nil)];
         [_textField setDelegate:self];
@@ -32,9 +32,9 @@
         _currencyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [_currencyButton setTitle:@"EUR" forState:UIControlStateNormal];
         [_currencyButton setTintColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
-        [_currencyButton    addTarget:self
-                               action:@selector(currencyButtonDidClick:)
-                     forControlEvents:UIControlEventTouchUpInside];
+//        [_currencyButton    addTarget:self
+//                               action:@selector(currencyButtonDidClick:)
+//                     forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_currencyButton];
     }
     return self;
@@ -75,10 +75,10 @@
 }
 // --------------------------------------------------------------------------------
 
--(void)currencyButtonDidClick:(id)sender
-{
-    AddItemViewController *addItemViewController = [[AddItemViewController alloc] init];
-    [addItemViewController currencyButtonDidClick];
-}
+//-(void)currencyButtonDidClick:(id)sender
+//{
+//    AddItemViewController *addItemViewController = [[AddItemViewController alloc] init];
+//    [addItemViewController currencyButtonDidClick];
+//}
 
 @end

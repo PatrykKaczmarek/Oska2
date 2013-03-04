@@ -8,17 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstDetailViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface FirstDetailViewController : UIViewController
 {
-    UIActionSheet *_actionSheet;
-    UIPickerView *_pickerView;
-    NSMutableArray *_currencyMutableArray;
-    UILabel *_label;
-    UIToolbar *_toolbar;
+    UIScrollView *_scrollView;
+    NSArray *_templatePicturesArray;
+    UIButton *_buttonWithPicture;
     
 }
-
-@property (nonatomic, strong) UIBarButtonItem *doneButton;
-@property (nonatomic, strong) UIBarButtonItem *cancelButton;
 
 @end

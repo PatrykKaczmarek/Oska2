@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AddItemViewController.h"
+
+@protocol CurrencyPickerDelegate <NSObject>
+
+-(void)currencyPickerDidChangeToCurrency:(NSString *)currency;
+
+@end
 
 @interface CurrencyPicker : UIActionSheet <UIPickerViewDelegate, UIPickerViewDataSource>
 {
@@ -19,5 +24,8 @@
 
 @property (nonatomic, strong) UIBarButtonItem *doneButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButt;
+@property (nonatomic, strong) id<CurrencyPickerDelegate> currencyDelegate;
+
+-(void)scrollToSelectedValue:(NSString*)value;
 
 @end

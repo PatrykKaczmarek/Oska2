@@ -14,16 +14,17 @@
 #import "AmountCell.h"
 #import "PriceCell.h"
 #import "CurrencyPicker.h"
-#import "AddImage.h"
 
 @interface AddItemViewController : UIViewController <UITextFieldDelegate,
                                                      UITableViewDataSource,
                                                      UITableViewDelegate,
-                                                     EnhancedKeyboardDelegate>
+                                                     UIActionSheetDelegate,
+                                                     EnhancedKeyboardDelegate, CurrencyPickerDelegate>
 {
     NSMutableArray *_textFieldMutableArray;
     UILabel *_addImageForegroundLabel;
     UILabel *_addImageBackgroundLabel;
+    UIImageView *_addImageImageView;
 }
 
 @property (nonatomic, strong) UITableView *addTableView;

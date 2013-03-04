@@ -31,55 +31,11 @@
 {
     [super viewDidLoad];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setFrame:CGRectMake(50, 50, 60, 30)];
-    [button addTarget:self action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-                        
-    _actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose currency", nil)
-                                               delegate:nil
-                                      cancelButtonTitle:nil
-                                 destructiveButtonTitle:nil
-                                      otherButtonTitles:nil];
-    [_actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    _scrollView = [[UIScrollView alloc] init];
+//    _templatePicturesArray = [[NSArray alloc] initWithObjects:@"noimage", @"acorn_squash", @"apple", @"banana", @"bell_pepper", @"blueberries", @"broccoli", @"carrot", @"celery", @"chili_pepper", @"eggplant", @"grape", @"lettuce", @"mushroom", @"onion", @"orange", @"papaya", @"pineapple", @"potato", @"pumpkin", @"radish", @"squash", @"strawberry", @"sugar_snap", @"tomato", @"watermelon", @"cucumber", nil];
+    _templatePicturesArray = @[@"noimage", @"acorn_squash", @"apple", @"banana", @"bell_pepper", @"blueberries", @"broccoli", @"carrot", @"celery", @"chili_pepper", @"eggplant", @"grape", @"lettuce", @"mushroom", @"onion", @"orange", @"papaya", @"pineapple", @"potato", @"pumpkin", @"radish", @"squash", @"strawberry", @"sugar_snap", @"tomato", @"watermelon", @"cucumber"];
     
-    _pickerView = [[UIPickerView alloc] init];
-    [_pickerView setDataSource:self];
-    [_pickerView setDelegate:self];
-    _pickerView.showsSelectionIndicator = YES;
-    [_pickerView setFrame:CGRectMake(0, 44, 320, 216)];
-    [_actionSheet addSubview:_pickerView];
-    
-    _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [_toolbar setBarStyle:UIBarStyleDefault];
-    [_toolbar sizeToFit];
-    NSMutableArray *pickerToolbarButtons = [[NSMutableArray alloc] init];
-    
-    _cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-                                                     style:UIBarButtonItemStyleBordered
-                                                    target:self
-                                                    action:@selector(cancelButtonDidTouchUpInside:)];
-    [pickerToolbarButtons addObject:_cancelButton];
-    
-    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                               target:self
-                                                                               action:nil];
-    [pickerToolbarButtons addObject:flexSpace];
-    
-    
-    _doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                   style:UIBarButtonItemStyleBordered
-                                                  target:self
-                                                  action:@selector(doneButtonDidTouchUpInside:)];
-    [pickerToolbarButtons addObject:_doneButton];
-    
-    _toolbar.items = pickerToolbarButtons;
-    [_actionSheet addSubview:_toolbar];
-    
-    [_actionSheet showInView:self.view];
-    [_actionSheet setBounds:CGRectMake(0, 0, 320, 474)];
-    
-    _currencyMutableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"EUR", nil), NSLocalizedString(@"USD", nil), NSLocalizedString(@"CHF", nil), NSLocalizedString(@"CZK", nil), NSLocalizedString(@"GBP", nil), NSLocalizedString(@"PLN", nil), NSLocalizedString(@"RUB", nil), NSLocalizedString(@"JPY", nil), NSLocalizedString(@"HUF", nil),  nil];
+    [self.view addSubview:_scrollView];    
 }
 
 // --------------------------------------------------------------------------------
@@ -89,51 +45,67 @@
     // Dispose of any resources that can be recreated.
 }
 
-// ================================================================================
-
-#pragma mark - UIPickerViewDelegate and DataSource
-
-// ================================================================================
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
 // --------------------------------------------------------------------------------
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+-(void)viewWillLayoutSubviews
 {
-    return [_currencyMutableArray count];
-}
-
-// --------------------------------------------------------------------------------
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSString *result = nil;
-    if ([pickerView isEqual:_pickerView])
+    [super viewWillLayoutSubviews];
+    
+    [[_scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+//    for (UIButton *abcbutton in [_scrollView subviews]) {
+//        buttonWithPicture setFrame:<#(CGRect)#>
+//    }
+//
+    int row = 0;
+    int column = 0;
+    float verticalMargin = 20.0f;
+    CGSize buttonWithPictureSize = CGSizeMake(40.0f, 40.0f);
+    float amountOfColumn = floorf(CGRectGetWidth(self.view.frame)/(buttonWithPictureSize.width + 20.0f));
+    float horizontalSpace = (CGRectGetWidth(self.view.frame) - amountOfColumn * buttonWithPictureSize.width)/amountOfColumn;
+    float horizontalMargin = horizontalSpace/2;
+    
+    for (int i = 0; i < _templatePicturesArray.count; i++)
     {
-        result = [NSString stringWithFormat:@"%@", [_currencyMutableArray objectAtIndex:row]];
+        UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[_templatePicturesArray objectAtIndex:i] ofType:@"png"]];
+//        UIImage *image = [UIImage imageNamed:[_templatePicturesArray objectAtIndex:i]];
+        _buttonWithPicture = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_buttonWithPicture setBackgroundColor:[UIColor redColor]];
+        [_buttonWithPicture setBackgroundImage:image forState:UIControlStateNormal];
+        [_buttonWithPicture addTarget:self
+                               action:@selector(ButtonClicked:)
+                     forControlEvents:UIControlEventTouchUpInside];
+        
+        [_buttonWithPicture setFrame:CGRectMake(column*buttonWithPictureSize.width + horizontalMargin + column*horizontalSpace,
+                                                row*(verticalMargin + buttonWithPictureSize.height) + verticalMargin,
+                                                buttonWithPictureSize.width,
+                                                buttonWithPictureSize.height)];
+        [_buttonWithPicture setTag:i];
+        [_scrollView addSubview:_buttonWithPicture];
+        
+        if (column == floorf(CGRectGetWidth(self.view.frame)/(buttonWithPictureSize.width + 20.0f)) -1)
+        {
+            column = 0;
+            row++;
+        }
+        else
+        {
+            column++;
+        }
     }
-    return result;
-}
-
-// ================================================================================
-
-#pragma mark - UIBarButtonsItems - Actions
-
-// ================================================================================
--(void)cancelButtonDidTouchUpInside:(id)sender
-{
-    [_actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    
+    [_scrollView setFrame:CGRectMake(0.0f,
+                                     0.0f,
+                                     CGRectGetWidth(self.view.frame),
+                                     CGRectGetHeight(self.view.frame))];
+    
+    [_scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.view.frame),
+                                           (row + 1) * (verticalMargin + buttonWithPictureSize.height) + verticalMargin)];
 }
 
 // --------------------------------------------------------------------------------
--(void)doneButtonDidTouchUpInside:(id)sender
+-(void)ButtonClicked:(id)sender
 {
-//    [_label setText:[_currencyMutableArray objectAtIndex:row]];
-    [_actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    NSLog(@"bla");
 }
--(void)clicked:(id)sender
-{
-//    [_actionSheet showInView:self.view];
-}
+
 @end

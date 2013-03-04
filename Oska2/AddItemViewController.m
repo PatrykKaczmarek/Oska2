@@ -58,12 +58,10 @@
     _addTableView.backgroundView = backView;
     [self.view addSubview:_addTableView];
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(AddImageBackgroundLabelDidTouch:)];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(AddImageImageViewDidTouch:)];
     
     _addImageBackgroundLabel = [[UILabel alloc] init];
     [_addImageBackgroundLabel setBackgroundColor:[UIColor brownColor]];
-    [_addImageBackgroundLabel addGestureRecognizer:tapGestureRecognizer];
-    [_addImageBackgroundLabel setUserInteractionEnabled:YES];
     [self.view addSubview:_addImageBackgroundLabel];
     
     _addImageForegroundLabel = [[UILabel alloc] init];
@@ -74,9 +72,10 @@
     [_addImageForegroundLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:_addImageForegroundLabel];
     
-//    [_addImageButton setTitleColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0] forState:UIControlStateNormal];
-//    [self.view addSubview:_addImageButton];
-    
+    _addImageImageView = [[UIImageView alloc] init];
+    [_addImageImageView addGestureRecognizer:tapGestureRecognizer];
+    [_addImageImageView setUserInteractionEnabled:YES];
+    [self.view addSubview:_addImageImageView];
 }
 
 // --------------------------------------------------------------------------------
@@ -102,6 +101,11 @@
                                    CGRectGetMinY(_addImageBackgroundLabel.frame) - 10.0f,
                                    CGRectGetMaxX(self.view.frame) - CGRectGetMaxX(_addImageBackgroundLabel.frame) - 2*margin,
                                    225.0f)];
+    
+    [_addImageImageView setFrame:CGRectMake(margin,
+                                            margin,
+                                            addImageBackgroundLabelSize.width,
+                                            addImageBackgroundLabelSize.height)];
 }
 
 // --------------------------------------------------------------------------------
@@ -185,6 +189,7 @@
             priceCell = [[PriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
         }
         [priceCell.textField setDelegate:self];
+        [priceCell.currencyButton addTarget:self action:@selector(currencyButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
         [_textFieldMutableArray insertObject:(priceCell.textField) atIndex:2];
         return priceCell;
         
@@ -273,20 +278,70 @@
 }
 
 // ================================================================================
-
+#pragma mark - CurrencyPickerDelegate
+// ================================================================================
+-(void)currencyPickerDidChangeToCurrency:(NSString *)currency
+{
+    PriceCell *cell = (PriceCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    [cell.currencyButton setTitle:currency forState:UIControlStateNormal];
+}
+// ================================================================================
 #pragma mark - ActionSheets - buttons
-
 // ================================================================================
 -(void)currencyButtonDidClick
 {
+    PriceCell *cell = (PriceCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    
     CurrencyPicker *actionSheetCurrencyPicker = [[CurrencyPicker alloc] init];
+    [actionSheetCurrencyPicker setCurrencyDelegate:self];
+    [actionSheetCurrencyPicker scrollToSelectedValue:cell.currencyButton.titleLabel.text];
     [actionSheetCurrencyPicker showInView:self.view];
 }
 
 // --------------------------------------------------------------------------------
--(void)AddImageBackgroundLabelDidTouch:(id)sender
+-(void)AddImageImageViewDidTouch:(id)sender
 {
-    AddImage *actionSheetAddImage = [[AddImage alloc] init];
-    [actionSheetAddImage showInView:self.view];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose source", nil)
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                               destructiveButtonTitle:NSLocalizedString(@"Delete", nil)
+                                                    otherButtonTitles:NSLocalizedString(@"Library", nil),
+                                                                      NSLocalizedString(@"Camera", nil),
+                                                                      NSLocalizedString(@"Template", nil), nil];
+    [actionSheet showFromTabBar:[self tabBarController].tabBar];
 }
+
+// --------------------------------------------------------------------------------
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex)
+    {
+        case 0: {
+            NSLog(@"%d",buttonIndex);
+            break;
+        }
+        case 1: {
+            NSLog(@"%d",buttonIndex);
+            break;
+        }
+        case 2: {
+            NSLog(@"%d",buttonIndex);
+            break;
+        }
+        case 3: {
+            NSLog(@"%d",buttonIndex);
+            break;
+        }
+        case 4: {
+            NSLog(@"%d",buttonIndex);
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+// --------------------------------------------------------------------------------
+
 @end

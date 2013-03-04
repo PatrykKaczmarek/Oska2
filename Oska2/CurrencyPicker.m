@@ -60,22 +60,20 @@
 
 // --------------------------------------------------------------------------------
 -(void)layoutSubviews
-{
-    AddItemViewController *addItemViewController = [[AddItemViewController alloc] init];
-    
+{    
     [_pickerView setFrame:CGRectMake(0.0f,
                                      44.0f,
-                                     CGRectGetWidth(addItemViewController.view.frame),
+                                     CGRectGetWidth(self.frame),
                                      216.0f)];
     
     [_pickerToolbar setFrame:CGRectMake(0.0f,
                                         0.0f,
-                                        CGRectGetWidth(addItemViewController.view.frame),
+                                        CGRectGetWidth(self.frame),
                                         44.0f)];
     
     [self setBounds:CGRectMake(0.0f,
                                0.0f,
-                               CGRectGetWidth(addItemViewController.view.frame),
+                               CGRectGetWidth(self.frame),
                                474.0f)];
 }
 
@@ -106,10 +104,14 @@
     return result;
 }
 
+// --------------------------------------------------------------------------------
+-(void)scrollToSelectedValue:(NSString*)value
+{
+    [_pickerView selectRow:[_currencyMutableArray indexOfObject:value] inComponent:0 animated:NO];
+}
+
 // ================================================================================
-
 #pragma mark - UIBarButtonsItems - Actions
-
 // ================================================================================
 -(void)cancelButtonDidTouchUpInside:(id)sender
 {
@@ -119,9 +121,11 @@
 // --------------------------------------------------------------------------------
 -(void)doneButtonDidTouchUpInside:(id)sender
 {   
-    NSInteger selectedRow = [_pickerView selectedRowInComponent:0];
+    if ([_currencyDelegate respondsToSelector:@selector(currencyPickerDidChangeToCurrency:)])
+    {
+        [_currencyDelegate currencyPickerDidChangeToCurrency:[_currencyMutableArray objectAtIndex:[_pickerView selectedRowInComponent:0]]];
+    }
     
-    NSLog(@"%d", selectedRow);
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 
