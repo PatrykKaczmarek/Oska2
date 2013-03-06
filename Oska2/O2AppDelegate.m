@@ -19,6 +19,12 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:O2_FLAG_HAS_RUN_BEFORE] != YES) {
+        [defaults setBool:YES forKey:O2_FLAG_HAS_RUN_BEFORE];
+        [defaults setObject:[NSDate date] forKey:O2_FIRST_RUN_KEY];
+    }
+    
     FirstViewController *firstViewController = [[FirstViewController alloc] init];
     CustomNavigationController *firstNavigationController = [[CustomNavigationController alloc] initWithRootViewController:firstViewController];
     SecondViewController *secondViewController = [[SecondViewController alloc] init];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "O2Constants.h"
 
 @interface O2AppDelegate : UIResponder <UIApplicationDelegate>
 

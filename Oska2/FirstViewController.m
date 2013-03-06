@@ -66,7 +66,7 @@
     newDateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                    dateStyle:NSDateFormatterNoStyle
                                                    timeStyle:NSDateFormatterShortStyle];
-    
+
     dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"apple", nil), NSLocalizedString(@"banana", nil), NSLocalizedString(@"pineapple", nil), NSLocalizedString(@"strawberry", nil), NSLocalizedString(@"watermelon", nil), nil];
     dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"carrot", nil), NSLocalizedString(@"tomato", nil), NSLocalizedString(@"cucumber", nil), nil];
     ImagesOfFruitArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"apple"],

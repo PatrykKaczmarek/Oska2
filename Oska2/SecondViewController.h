@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "O2Constants.h"
 
 @interface SecondViewController : UIViewController
+{
+    UILabel *_mainLabel;
+    NSTimer *_mainTimer;
+    NSDate *_startDate;
+}
 
 @end

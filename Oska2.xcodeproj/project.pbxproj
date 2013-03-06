@@ -21,6 +21,8 @@
 		CEAC4FE616CE987300CEFD55 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE516CE987300CEFD55 /* FirstViewController.m */; };
 		CEAC4FE916CE988700CEFD55 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAC4FE816CE988700CEFD55 /* SecondViewController.m */; };
 		CEACDCE816D42FB4007A1A03 /* O2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEACDCE716D42FB4007A1A03 /* O2Cell.m */; };
+		CEADFA9216E6908400C82263 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEADFA9116E6908400C82263 /* MobileCoreServices.framework */; };
+		CEADFA9716E6C01F00C82263 /* TemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEADFA9616E6C01F00C82263 /* TemplateViewController.m */; };
 		CEB1008816DE306F00760C89 /* EnhancedKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB1008716DE306F00760C89 /* EnhancedKeyboard.m */; };
 		CEB612FB16DBDB0F00F257C4 /* pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB612FA16DBDB0F00F257C4 /* pattern.png */; };
 		CEB612FF16DBE2CE00F257C4 /* fruits_little.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB612FE16DBE2CE00F257C4 /* fruits_little.png */; };
@@ -65,6 +67,7 @@
 /* Begin PBXFileReference section */
 		CE9E791016E0D68900AEA5E4 /* CurrencyPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyPicker.h; sourceTree = "<group>"; };
 		CE9E791116E0D68900AEA5E4 /* CurrencyPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyPicker.m; sourceTree = "<group>"; };
+		CEAAB49316E7F2ED00A55FF3 /* O2Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = O2Constants.h; sourceTree = "<group>"; };
 		CEAC3EA616DBBCEF008CDDC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAC3EA816DBBD0F008CDDC9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CEAC3EA916DBBD1A008CDDC9 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -89,6 +92,9 @@
 		CEAC4FE816CE988700CEFD55 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		CEACDCE616D42FB3007A1A03 /* O2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = O2Cell.h; sourceTree = "<group>"; };
 		CEACDCE716D42FB4007A1A03 /* O2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = O2Cell.m; sourceTree = "<group>"; };
+		CEADFA9116E6908400C82263 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CEADFA9516E6C01F00C82263 /* TemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateViewController.h; sourceTree = "<group>"; };
+		CEADFA9616E6C01F00C82263 /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateViewController.m; sourceTree = "<group>"; };
 		CEB1008616DE306F00760C89 /* EnhancedKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnhancedKeyboard.h; sourceTree = "<group>"; };
 		CEB1008716DE306F00760C89 /* EnhancedKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnhancedKeyboard.m; sourceTree = "<group>"; };
 		CEB612FA16DBDB0F00F257C4 /* pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern.png; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEADFA9216E6908400C82263 /* MobileCoreServices.framework in Frameworks */,
 				CEAC4FC816CE974D00CEFD55 /* UIKit.framework in Frameworks */,
 				CEAC4FCA16CE974D00CEFD55 /* Foundation.framework in Frameworks */,
 				CEAC4FCC16CE974D00CEFD55 /* CoreGraphics.framework in Frameworks */,
@@ -184,6 +191,7 @@
 		CEAC4FC616CE974D00CEFD55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEADFA9116E6908400C82263 /* MobileCoreServices.framework */,
 				CEAC4FC716CE974D00CEFD55 /* UIKit.framework */,
 				CEAC4FC916CE974D00CEFD55 /* Foundation.framework */,
 				CEAC4FCB16CE974D00CEFD55 /* CoreGraphics.framework */,
@@ -196,6 +204,7 @@
 			children = (
 				CEAC4FD616CE974D00CEFD55 /* O2AppDelegate.h */,
 				CEAC4FD716CE974D00CEFD55 /* O2AppDelegate.m */,
+				CEAAB49316E7F2ED00A55FF3 /* O2Constants.h */,
 				CEAED86416DD199F00ABDA12 /* Firsts */,
 				CEAED86716DD19FF00ABDA12 /* FirstDetail */,
 				CEAED86816DD1A3E00ABDA12 /* Second */,
@@ -247,6 +256,8 @@
 			children = (
 				CEB8323E16DAF2F100B0F6F7 /* AddItemViewController.h */,
 				CEB8323F16DAF2F100B0F6F7 /* AddItemViewController.m */,
+				CEADFA9516E6C01F00C82263 /* TemplateViewController.h */,
+				CEADFA9616E6C01F00C82263 /* TemplateViewController.m */,
 				CEB1008916DE384100760C89 /* Keyboard */,
 				CE9E790C16E0D5A600AEA5E4 /* Action Sheets */,
 				CEBA349B16E022CF000BF697 /* Cells */,
@@ -457,6 +468,7 @@
 				CEB7AD7A16DE8B5200ECC074 /* AmountCell.m in Sources */,
 				CEBA349E16E0238C000BF697 /* PriceCell.m in Sources */,
 				CE9E791216E0D68900AEA5E4 /* CurrencyPicker.m in Sources */,
+				CEADFA9716E6C01F00C82263 /* TemplateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

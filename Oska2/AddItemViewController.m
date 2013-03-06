@@ -27,15 +27,16 @@
 }
 
 // ================================================================================
-
 #pragma mark - View lifecycle
-
 // ================================================================================
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     _textFieldMutableArray = [[NSMutableArray alloc] init];
+    
+    //will show "cancel" in backBarButtonItem in VC one level up in stack:
+//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
  
 //    UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [customButton setBackgroundColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
@@ -47,6 +48,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                       target:self
                                                                       action:@selector(saveRecord)];
+    
+    _imagePickerController = [[UIImagePickerController alloc] init];
+    [_imagePickerController setDelegate:self];
    
     _addTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [_addTableView setDelegate:self];
@@ -115,9 +119,7 @@
 }
 
 // ================================================================================
-
 #pragma mark - 
-
 // ================================================================================
 -(void)saveRecord
 {
@@ -132,9 +134,7 @@
 }
 
 // ================================================================================
-
 #pragma mark - UITableView DataSource & Delegate
-
 // ================================================================================
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -225,9 +225,7 @@
 }
 
 // ================================================================================
-
 #pragma mark - UITextField delegate
-
 // ================================================================================
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -301,45 +299,110 @@
 // --------------------------------------------------------------------------------
 -(void)AddImageImageViewDidTouch:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose source", nil)
-                                                             delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                               destructiveButtonTitle:NSLocalizedString(@"Delete", nil)
-                                                    otherButtonTitles:NSLocalizedString(@"Library", nil),
-                                                                      NSLocalizedString(@"Camera", nil),
-                                                                      NSLocalizedString(@"Template", nil), nil];
-    [actionSheet showFromTabBar:[self tabBarController].tabBar];
+    if (_addImageImageView.image == nil)
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose source", nil)
+                                                                 delegate:self
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:NSLocalizedString(@"Library", nil),
+                                      NSLocalizedString(@"Camera", nil),
+                                      NSLocalizedString(@"Template", nil), nil];
+        [actionSheet showFromTabBar:[self tabBarController].tabBar];
+    }
+    else
+    {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Choose source", nil)
+                                                                 delegate:self
+                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                   destructiveButtonTitle:NSLocalizedString(@"Delete", nil)
+                                                        otherButtonTitles:NSLocalizedString(@"Library", nil),
+                                      NSLocalizedString(@"Camera", nil),
+                                      NSLocalizedString(@"Template", nil), nil];
+        [actionSheet showFromTabBar:[self tabBarController].tabBar];
+    }
 }
 
 // --------------------------------------------------------------------------------
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex)
+    if (_addImageImageView.image == nil)
     {
-        case 0: {
-            NSLog(@"%d",buttonIndex);
-            break;
+        switch (buttonIndex)
+        {
+            case 0: { //Photo Library
+                [_imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                [self presentViewController:_imagePickerController animated:YES completion:NULL];
+                break;
+            }
+            case 1: { //Camera
+                [_imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+                [self presentViewController:_imagePickerController animated:YES completion:NULL];
+                break;
+            }
+            case 2: { //Template
+                TemplateViewController *templateViewController = [[TemplateViewController alloc] init];
+                [self.navigationController pushViewController:templateViewController animated:YES];
+                break;
+            }
+            case 3: { //Cancel
+                break;
+            }
+            default:
+                break;
         }
-        case 1: {
-            NSLog(@"%d",buttonIndex);
-            break;
-        }
-        case 2: {
-            NSLog(@"%d",buttonIndex);
-            break;
-        }
-        case 3: {
-            NSLog(@"%d",buttonIndex);
-            break;
-        }
-        case 4: {
-            NSLog(@"%d",buttonIndex);
-            break;
-        }
-            
-        default:
-            break;
     }
+    else
+    {
+        switch (buttonIndex)
+        {
+            case 0: { //Delete
+                [_addImageImageView setImage:nil];
+                [self.view addSubview:_addImageBackgroundLabel];
+                [self.view addSubview:_addImageForegroundLabel];
+                break;
+            }
+            case 1: { //Photo Library
+                [_imagePickerController setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                [self presentViewController:_imagePickerController animated:YES completion:NULL];
+                break;
+            }
+            case 2: { //Camera
+                [_imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+                [self presentViewController:_imagePickerController animated:YES completion:NULL];
+                break;
+            }
+            case 3: { //Template
+                TemplateViewController *templateViewController = [[TemplateViewController alloc] init];
+                [self.navigationController pushViewController:templateViewController animated:YES];
+                break;
+            }
+            case 4: { //Cancel
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
+// ================================================================================
+#pragma mark - UIImagePickerControllerDelegate and UINavigationControllerDelegate
+// ================================================================================
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [_addImageImageView setImage:image];
+    [_addImageBackgroundLabel removeFromSuperview];
+    [_addImageForegroundLabel removeFromSuperview];
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// --------------------------------------------------------------------------------
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 // --------------------------------------------------------------------------------
