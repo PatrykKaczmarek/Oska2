@@ -8,24 +8,31 @@
 
 #import <UIKit/UIKit.h>
 
+// ================================================================================
+//Delegates:
+// ================================================================================
 @protocol CurrencyPickerDelegate <NSObject>
-
 -(void)currencyPickerDidChangeToCurrency:(NSString *)currency;
-
 @end
 
+
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface CurrencyPicker : UIActionSheet <UIPickerViewDelegate, UIPickerViewDataSource>
 {
-    UIPickerView *_pickerView;
-    NSMutableArray *_currencyMutableArray;
     UILabel *_label;
     UIToolbar *_pickerToolbar;
 }
-
+// --------------------------------------------------------------------------------
+@property (nonatomic, strong) NSMutableArray *currencyMutableArray;
+@property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIBarButtonItem *doneButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButt;
+// --------------------------------------------------------------------------------
 @property (nonatomic, strong) id<CurrencyPickerDelegate> currencyDelegate;
-
+// --------------------------------------------------------------------------------
 -(void)scrollToSelectedValue:(NSString*)value;
+// --------------------------------------------------------------------------------
 
 @end

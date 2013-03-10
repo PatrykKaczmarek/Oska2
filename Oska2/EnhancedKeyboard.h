@@ -7,21 +7,27 @@
 //
 
 #import <Foundation/Foundation.h>
-
+// ================================================================================
+//Delegates:
+// ================================================================================
 @protocol EnhancedKeyboardDelegate <NSObject>
-
 -(void)nextDidTouchUpInside;
 -(void)prevDidTouchUpInside;
-
 @end
-
+// ================================================================================
+//Declarations:
 // ================================================================================
 @interface EnhancedKeyboard : NSObject
-
--(id)prevEnabled:(BOOL)prevEnabled nextEnabled:(BOOL)nextEnabled;
-@property (nonatomic, strong) id <EnhancedKeyboardDelegate> delegate;
-
+{
+    
+}
+// --------------------------------------------------------------------------------
 @property (nonatomic, strong) UIBarButtonItem *previousButton;
 @property (nonatomic, strong) UIBarButtonItem *nextButton;
+// --------------------------------------------------------------------------------
+@property (nonatomic, strong) id <EnhancedKeyboardDelegate> delegate;
+// --------------------------------------------------------------------------------
+-(id)prevEnabled:(BOOL)prevEnabled nextEnabled:(BOOL)nextEnabled;
+// --------------------------------------------------------------------------------
 
 @end

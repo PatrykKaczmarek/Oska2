@@ -8,17 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "FirstViewController.h"
+#import "O2Constants.h"
 
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface O2Cell : UITableViewCell
 {
     // o zasięgu klasowym
 }
-
+// --------------------------------------------------------------------------------
 // o zasięgu globalnym
 @property (nonatomic, strong) UILabel *mainLabel;
-@property (nonatomic, strong) UILabel *detailLabel;
+@property (nonatomic, strong) UILabel *detailLabelPrice;
+@property (nonatomic, strong) UILabel *detailLabelAmount;
+@property (nonatomic, strong) UILabel *detailLabelNamePrice;
+@property (nonatomic, strong) UILabel *detailLabelNameAmount;
 @property (nonatomic, strong) UIImageView *o2ImageView;
-
+// --------------------------------------------------------------------------------
 //tak sie przekazuje wlasne metody miedzy klasami:
 //- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier title:(NSString *)title;
 

@@ -10,9 +10,12 @@
 #import "AddItemViewController.h"
 #import "FirstViewController.h"
 
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface CustomNavigationController : UINavigationController
 {
     
 }
-
+// --------------------------------------------------------------------------------
 @end

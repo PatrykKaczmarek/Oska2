@@ -7,9 +7,7 @@
 //
 
 #import "O2AppDelegate.h"
-#import "FirstViewController.h"
-#import "SecondViewController.h"
-#import "CustomNavigationController.h"
+
 
 @implementation O2AppDelegate
 

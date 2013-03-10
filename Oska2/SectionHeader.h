@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "FirstViewController.h"
 
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface SectionHeader : UIView
 {
     
 }
-
+// --------------------------------------------------------------------------------
 @property (nonatomic, strong) UILabel *sectionHeaderLabel;
-
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section title:(NSString *)title;
+// --------------------------------------------------------------------------------
 
 @end

@@ -124,8 +124,7 @@
     if ([_currencyDelegate respondsToSelector:@selector(currencyPickerDidChangeToCurrency:)])
     {
         [_currencyDelegate currencyPickerDidChangeToCurrency:[_currencyMutableArray objectAtIndex:[_pickerView selectedRowInComponent:0]]];
-    }
-    
+    }    
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 

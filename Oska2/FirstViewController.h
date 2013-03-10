@@ -13,11 +13,19 @@
 #import "SectionHeader.h"
 #import "FirstDetailViewController.h"
 #import "AddItemViewController.h"
+#import "O2Constants.h"
+#import "CurrencyPicker.h"
 
-@interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+
+// ================================================================================
+//Declarations:
+// ================================================================================
+@interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, SaveButtonDelegate>
 {
     NSMutableArray *dataOfFruitsTableArray;
     NSMutableArray *dataOfVegetablesTableArray;
+    NSMutableArray *dataOfFruitsPriceArray;
+    NSMutableArray *dataOfFruitsAmountArray;
     NSMutableArray *ImagesOfFruitArray;
     NSMutableArray *ImagesOfVegetablesArray;
     NSString *textFieldOutputString;
@@ -25,16 +33,17 @@
     UILabel *_headerLabel;
     NSIndexSet *_setAnimation;
     UIImage *_tabBarImageLeft;
+    NSTimer *_mainTimer;
 }
-
+// --------------------------------------------------------------------------------
 @property (nonatomic, strong) UIBarButtonItem *editBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *addBarButtonItem;
 @property (nonatomic, strong) UIAlertView *addRecordAlertView;
 @property (nonatomic, strong) UITextField *addRecordTextField;
 @property (nonatomic, strong) UIAlertView *chooseRecordDestinationAlertView;
-
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *sectionHeaderView;
+// --------------------------------------------------------------------------------
 
 @end

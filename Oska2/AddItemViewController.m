@@ -38,16 +38,12 @@
     //will show "cancel" in backBarButtonItem in VC one level up in stack:
 //    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
  
-//    UIButton *customButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [customButton setBackgroundColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
-//    [customButton setTitle:@"DONE" forState:UIControlStateNormal];
-//    
-//    UIBarButtonItem *customRightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:customButton];
-//    self.navigationItem.rightBarButtonItem = customRightButtonItem;
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
+                                                                       style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(saveRecord)];
+    self.navigationItem.rightBarButtonItem = saveButtonItem;
+    [saveButtonItem setEnabled:NO];
     
     _imagePickerController = [[UIImagePickerController alloc] init];
     [_imagePickerController setDelegate:self];
@@ -122,13 +118,20 @@
 #pragma mark - 
 // ================================================================================
 -(void)saveRecord
-{
-    FirstViewController *firstViewController = [[FirstViewController alloc] init];
-    
+{   
+    if ([_delegate respondsToSelector:@selector(ProductName:ProductAmount:ProductPrice:ProductDescription:PriceCurrency:ProductImage:)])
+    {
+        [_delegate ProductName:[[_textFieldMutableArray objectAtIndex:0] text]
+                 ProductAmount:[[_textFieldMutableArray objectAtIndex:1] text]
+                  ProductPrice:[[_textFieldMutableArray objectAtIndex:2] text]
+            ProductDescription:[[_textFieldMutableArray objectAtIndex:3] text]
+                 PriceCurrency:(_currencyDidChoose)
+                  ProductImage:(_addImageImageView.image)];
+    }
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     [UIView setAnimationDuration:0.75];
-    [self.navigationController pushViewController:firstViewController animated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
     [UIView commitAnimations];
 }
@@ -245,6 +248,19 @@
     }
 }
 
+// --------------------------------------------------------------------------------
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (([[[_textFieldMutableArray objectAtIndex:0] text] length] == 0) && ([[_textFieldMutableArray objectAtIndex:0] text] != nil))
+    {
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    }
+    else
+    {
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    }
+}
+
 // --------------------------------------------------------------------------------/
 -(void)nextDidTouchUpInside
 {
@@ -280,8 +296,9 @@
 // ================================================================================
 -(void)currencyPickerDidChangeToCurrency:(NSString *)currency
 {
+    _currencyDidChoose = currency;
     PriceCell *cell = (PriceCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-    [cell.currencyButton setTitle:currency forState:UIControlStateNormal];
+    [cell.currencyButton setTitle:_currencyDidChoose forState:UIControlStateNormal];
 }
 // ================================================================================
 #pragma mark - ActionSheets - buttons
@@ -289,8 +306,8 @@
 -(void)currencyButtonDidClick
 {
     PriceCell *cell = (PriceCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-    
     CurrencyPicker *actionSheetCurrencyPicker = [[CurrencyPicker alloc] init];
+    
     [actionSheetCurrencyPicker setCurrencyDelegate:self];
     [actionSheetCurrencyPicker scrollToSelectedValue:cell.currencyButton.titleLabel.text];
     [actionSheetCurrencyPicker showInView:self.view];

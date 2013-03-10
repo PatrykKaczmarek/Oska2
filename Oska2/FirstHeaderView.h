@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "FirstViewController.h"
 
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface FirstHeaderView : UIView
 {
     UILabel *_headerLabel;
     UIImageView *_headerImageLeft;
     UIImageView *_headerImageRight;
 }
-
+// --------------------------------------------------------------------------------
 @end

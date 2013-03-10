@@ -23,7 +23,7 @@
         [_textField setBorderStyle:UITextBorderStyleNone];
         [_textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
         [_textField setTextAlignment:NSTextAlignmentCenter];
-        [_textField setKeyboardType:UIKeyboardTypeNumberPad];
+        [_textField setKeyboardType:UIKeyboardTypeDecimalPad];
         [_textField setTextColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [_textField setText:[NSString stringWithFormat:@"%d", amount]];
         [_textField setDelegate:self];

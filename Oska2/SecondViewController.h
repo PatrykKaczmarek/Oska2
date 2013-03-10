@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "O2Constants.h"
 
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface SecondViewController : UIViewController
 {
     UILabel *_mainLabel;
-    NSTimer *_mainTimer;
     NSDate *_startDate;
 }
+// --------------------------------------------------------------------------------
 
 @end

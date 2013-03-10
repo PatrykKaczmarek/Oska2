@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "EnhancedKeyboard.h"
-
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface TextCell : UITableViewCell <UITextFieldDelegate>
 {
     
 }
-
+// --------------------------------------------------------------------------------
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) EnhancedKeyboard *enhancedKeyboard;
-
+// --------------------------------------------------------------------------------
 
 @end

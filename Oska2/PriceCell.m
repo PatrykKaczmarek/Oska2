@@ -32,21 +32,10 @@
         _currencyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [_currencyButton setTitle:@"EUR" forState:UIControlStateNormal];
         [_currencyButton setTintColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
-//        [_currencyButton    addTarget:self
-//                               action:@selector(currencyButtonDidClick:)
-//                     forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_currencyButton];
     }
     return self;
 }
-
-// --------------------------------------------------------------------------------
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//    
-//    // Configure the view for the selected state
-//}
 
 // --------------------------------------------------------------------------------
 -(void)layoutSubviews
@@ -75,10 +64,5 @@
 }
 // --------------------------------------------------------------------------------
 
-//-(void)currencyButtonDidClick:(id)sender
-//{
-//    AddItemViewController *addItemViewController = [[AddItemViewController alloc] init];
-//    [addItemViewController currencyButtonDidClick];
-//}
 
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+// ================================================================================
+//Declarations:
+// ================================================================================
 @interface FirstDetailViewController : UIViewController
 {
     UIScrollView *_scrollView;
@@ -15,5 +18,6 @@
     UIButton *_buttonWithPicture;
     
 }
+// --------------------------------------------------------------------------------
 
 @end

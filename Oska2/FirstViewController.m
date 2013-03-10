@@ -62,13 +62,15 @@
     _headerView = [[FirstHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 50.0f)];
     _tableView.tableHeaderView = _headerView;
     
-    //    newDateString = [self getTime];
+//    newDateString = [self getTime];
     newDateString = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                    dateStyle:NSDateFormatterNoStyle
                                                    timeStyle:NSDateFormatterShortStyle];
 
     dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"apple", nil), NSLocalizedString(@"banana", nil), NSLocalizedString(@"pineapple", nil), NSLocalizedString(@"strawberry", nil), NSLocalizedString(@"watermelon", nil), nil];
     dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"carrot", nil), NSLocalizedString(@"tomato", nil), NSLocalizedString(@"cucumber", nil), nil];
+    dataOfFruitsPriceArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), nil];
+    dataOfFruitsAmountArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), nil];
     ImagesOfFruitArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"apple"],
                                                                  [UIImage imageNamed:@"banana"],
                                                                  [UIImage imageNamed:@"pineapple"],
@@ -80,6 +82,9 @@
                                                                       [UIImage imageNamed:@"tomato"],
                                                                       [UIImage imageNamed:@"cucumber"],
                                                                       nil];
+    
+//    O2Cell *w = [[O2Cell alloc] init];
+//    _mainTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:w selector:@selector(updateMainTimer:) userInfo:nil repeats:YES];
 }
 
 // --------------------------------------------------------------------------------
@@ -88,6 +93,14 @@
     [super viewWillAppear:animated];    
     [_tableView reloadData];
     [self showTabBar:self.tabBarController];
+}
+
+// --------------------------------------------------------------------------------
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+//    [_mainTimer invalidate];
 }
 
 // --------------------------------------------------------------------------------
@@ -125,6 +138,8 @@
 -(void)addRecord
 {
     AddItemViewController *addItemViewController = [[AddItemViewController alloc] init];
+    [addItemViewController setDelegate:self];
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     [UIView setAnimationDuration:0.75];
@@ -137,6 +152,40 @@
 //    [_addRecordAlertView show];
 }
 
+// --------------------------------------------------------------------------------
+-(void)ProductName:(NSString *)productName ProductAmount:(NSString *)productAmount ProductPrice:(NSString *)productPrice ProductDescription:(NSString *)productDescription PriceCurrency:(NSString *)priceCurrency ProductImage:(UIImage *)productImage
+{   
+    [dataOfFruitsTableArray addObject:productName];
+    
+    if (productAmount != nil)
+    {
+        [dataOfFruitsAmountArray addObject:productAmount];
+    }else{
+        [dataOfFruitsAmountArray addObject:@"no data"];
+    }
+    
+    if ((productPrice != nil) || [productPrice length] > 0)
+    {
+        [dataOfFruitsPriceArray addObject:[NSString stringWithFormat:@"%@ %@", productPrice, priceCurrency]];
+    }else{
+        [dataOfFruitsPriceArray addObject:@"no data"];
+    }
+    
+    if (productDescription != nil)
+    {
+        //podpisz description po label?
+    }else{
+        
+    }
+    
+    if (productImage != nil)
+    {
+        [ImagesOfFruitArray addObject:productImage];
+    }else{
+        [ImagesOfFruitArray addObject:[UIImage imageNamed:@"noimage"]];
+    }    
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationFade];
+}
 // ================================================================================
 
 #pragma mark - UITabBarController
@@ -277,9 +326,17 @@
                 cell = [[O2Cell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier1];
             }
             cell.mainLabel.text = [dataOfFruitsTableArray objectAtIndex:indexPath.row];
-            cell.detailLabel.text = newDateString;
+            cell.detailLabelAmount.text = [dataOfFruitsAmountArray objectAtIndex:indexPath.row];
+            cell.detailLabelPrice.text = [dataOfFruitsPriceArray objectAtIndex:indexPath.row];
+            cell.detailLabelNamePrice.text = NSLocalizedString(@"Price: ", nil);
+            cell.detailLabelNameAmount.text = NSLocalizedString(@"Amount: ", nil);
             cell.o2ImageView.image = [ImagesOfFruitArray objectAtIndex:indexPath.row];
 //            [dataOfTableViewCellPicturesArray addObject:[UIImage imageNamed:@"ble"]];
+            
+//            NSDate *defaultDate = [[NSUserDefaults standardUserDefaults] objectForKey:O2_FIRST_RUN_KEY];
+//            NSDateComponents *compDate = [[NSCalendar currentCalendar] components:NSSecondCalendarUnit|NSMinuteCalendarUnit|NSHourCalendarUnit fromDate:defaultDate toDate:[NSDate date] options:0];
+//            [cell.detailLabel setText:[NSString stringWithFormat:@"H:%i M:%i S:%i",compDate.hour, compDate.minute, compDate.second]];
+//            _mainTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:cell selector:@selector(updateMainTimer:) userInfo:nil repeats:YES];
             break;
         }
         default: {
@@ -289,13 +346,16 @@
                 cell = [[O2Cell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier2];
             }
             cell.mainLabel.text = [dataOfVegetablesTableArray objectAtIndex:indexPath.row];
-            cell.detailLabel.text = newDateString;
+            cell.detailLabelAmount.text = @"1234 ";
+            cell.detailLabelPrice.text = @"56.45 PLN";
+            cell.detailLabelNamePrice.text = NSLocalizedString(@"Price: ", nil);
+            cell.detailLabelNameAmount.text = NSLocalizedString(@"Amount:  ", nil);
             cell.o2ImageView.image = [ImagesOfVegetablesArray objectAtIndex:indexPath.row];
-//            cell.o2ImageView.image = [dataOfTableViewCellPicturesArray objectAtIndex:indexPath.row];
+//            cell.detailLabel.text = newDateString;
             break;
         }
+            
     }
-
     return cell;
 }
 
@@ -373,4 +433,5 @@
 }
 
 // --------------------------------------------------------------------------------
+
 @end
