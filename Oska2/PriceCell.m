@@ -30,7 +30,7 @@
         [self addSubview:_textField];
         
         _currencyButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [_currencyButton setTitle:@"EUR" forState:UIControlStateNormal];
+//        [_currencyButton setTitle:@"EUR" forState:UIControlStateNormal];
         [_currencyButton setTintColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [self addSubview:_currencyButton];
     }

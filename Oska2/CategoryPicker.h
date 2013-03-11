@@ -10,6 +10,12 @@
 #import "CancelDoneToolbar.h"
 
 // ================================================================================
+//Delegates:
+// ================================================================================
+@protocol CategoryPickerDelegate <NSObject>
+-(void)categoryPickerDidChangeToCategory:(NSString *)category CategoryPickerDidChangeToRow:(NSInteger)row;
+@end
+// ================================================================================
 //Declarations:
 // ================================================================================
 @interface CategoryPicker : UIActionSheet <UIPickerViewDelegate, UIPickerViewDataSource, CustomToolbarDelegate>
@@ -19,10 +25,10 @@
 // --------------------------------------------------------------------------------
 @property (nonatomic, strong) NSMutableArray *categoryArray;
 @property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic, strong) UIBarButtonItem *doneButton;
-@property (nonatomic, strong) UIBarButtonItem *cancelButt;
 // --------------------------------------------------------------------------------
-//-(void)scrollToSelectedValue:(NSString*)value;
+@property (nonatomic, strong) id <CategoryPickerDelegate> categoryDelegate;
+// --------------------------------------------------------------------------------
+-(void)scrollToSelectedValue:(NSString*)value;
 // --------------------------------------------------------------------------------
 
 @end

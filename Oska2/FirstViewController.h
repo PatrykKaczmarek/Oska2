@@ -23,11 +23,15 @@
 @interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, SaveButtonDelegate>
 {
     NSMutableArray *dataOfFruitsTableArray;
-    NSMutableArray *dataOfVegetablesTableArray;
     NSMutableArray *dataOfFruitsPriceArray;
     NSMutableArray *dataOfFruitsAmountArray;
     NSMutableArray *ImagesOfFruitArray;
+    
+    NSMutableArray *dataOfVegetablesTableArray;
+    NSMutableArray *dataOfVegetablesPriceArray;
+    NSMutableArray *dataOfVegetablesAmountArray;
     NSMutableArray *ImagesOfVegetablesArray;
+    
     NSString *textFieldOutputString;
     NSString *newDateString;
     UILabel *_headerLabel;

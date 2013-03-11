@@ -15,7 +15,7 @@
 {
     self = [super initWithFrame:frame];
     if (self)
-    {
+    {        
         CancelDoneToolbar *cancelDoneToolbar = [[CancelDoneToolbar alloc] init];
         [cancelDoneToolbar setCustomDelegate:self];
         _pickerToolbar = cancelDoneToolbar;
@@ -29,7 +29,6 @@
         [_pickerView setDelegate:self];
         _pickerView.showsSelectionIndicator = YES;
         [self addSubview:_pickerView];
-        
     }
     return self;
 }
@@ -89,11 +88,20 @@
 // --------------------------------------------------------------------------------
 -(void)doneAction
 {
-//    if ([_currencyDelegate respondsToSelector:@selector(currencyPickerDidChangeToCurrency:)])
-//    {
-//        [_currencyDelegate currencyPickerDidChangeToCurrency:[_currencyMutableArray objectAtIndex:[_pickerView selectedRowInComponent:0]]];
-//    }
+//    NSLog(@"selected row: %d",[_pickerView selectedRowInComponent:0]);
+    if ([_categoryDelegate respondsToSelector:@selector(categoryPickerDidChangeToCategory:CategoryPickerDidChangeToRow:)])
+    {
+        [_categoryDelegate categoryPickerDidChangeToCategory:[_categoryArray objectAtIndex:[_pickerView selectedRowInComponent:0]]         CategoryPickerDidChangeToRow:[_pickerView selectedRowInComponent:0]];
+    }
     [self dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+// ================================================================================
+#pragma mark - Other methods
+// ================================================================================
+-(void)scrollToSelectedValue:(NSString*)value
+{
+    [_pickerView selectRow:[_categoryArray indexOfObject:value] inComponent:0 animated:NO];
 }
 
 // --------------------------------------------------------------------------------

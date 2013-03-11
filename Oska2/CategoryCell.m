@@ -16,12 +16,15 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
         _textField = [[UITextField alloc] init];
         [_textField setDelegate:self];
+        [_textField setEnabled:NO];
         [_textField setBorderStyle:UITextBorderStyleNone];
         [_textField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
         [_textField setTextAlignment:NSTextAlignmentLeft];
-        [_textField setPlaceholder:NSLocalizedString(@"Category", nil)];
+//        [_textField setPlaceholder:NSLocalizedString(@"Category", nil)];
         [_textField setTextColor:[UIColor colorWithRed:0.325 green:0.09 blue:0.09 alpha:1.0]];
         [self addSubview:_textField];
         
@@ -54,10 +57,10 @@
 }
 
 // --------------------------------------------------------------------------------
--(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    return NO;
-}
+//-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+//{
+//    return NO;
+//}
 
 // --------------------------------------------------------------------------------
 

@@ -35,6 +35,7 @@
     [self.view setBackgroundColor:[UIColor yellowColor]];
     
     _textFieldMutableArray = [[NSMutableArray alloc] init];
+    _currencyArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"EUR", nil), NSLocalizedString(@"USD", nil), NSLocalizedString(@"CHF", nil), NSLocalizedString(@"CZK", nil), NSLocalizedString(@"GBP", nil), NSLocalizedString(@"PLN", nil), NSLocalizedString(@"RUB", nil), NSLocalizedString(@"JPY", nil), NSLocalizedString(@"HUF", nil),  nil];
     _categoryArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"Fruits", nil), NSLocalizedString(@"Vegetables", nil), nil];
     
     //will show "cancel" in backBarButtonItem in VC one level up in stack:
@@ -117,22 +118,35 @@
 // ================================================================================
 -(void)saveRecord
 {   
-    if ([_delegate respondsToSelector:@selector(productName:productAmount:productPrice:productDescription:priceCurrency:productImage:)])
-    {
-        [_delegate productName:[[_textFieldMutableArray objectAtIndex:0] text]
-                 productAmount:[[_textFieldMutableArray objectAtIndex:1] text]
-                  productPrice:[[_textFieldMutableArray objectAtIndex:2] text]
-            productDescription:[[_textFieldMutableArray objectAtIndex:3] text]
-                 priceCurrency:(_currencyDidChoose)
-                  productImage:(_addImageImageView.image)];
-    }
 //    UIView animateWithDuration:<#(NSTimeInterval)#> delay:<#(NSTimeInterval)#> options:<#(UIViewAnimationOptions)#> animations:<#^(void)animations#> completion:<#^(BOOL finished)completion#>
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    [UIView setAnimationDuration:0.75];
-    [self.navigationController popViewControllerAnimated:YES];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
-    [UIView commitAnimations];
+    if (_categoryDidChoose == nil)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Issue appear", nil)
+                                                            message:NSLocalizedString(@"Select category!", nil)
+                                                           delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {       
+        if ([_delegate respondsToSelector:@selector(productName:productAmount:productPrice:productDescription:priceCurrency:productImage:category:)])
+        {
+            [_delegate productName:[[_textFieldMutableArray objectAtIndex:0] text]
+                     productAmount:[[_textFieldMutableArray objectAtIndex:1] text]
+                      productPrice:[[_textFieldMutableArray objectAtIndex:2] text]
+                productDescription:[[_textFieldMutableArray objectAtIndex:3] text]
+                     priceCurrency:(_currencyDidChoose)
+                      productImage:(_addImageImageView.image)
+                          category:_row];
+        }
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+        [UIView setAnimationDuration:0.75];
+        [self.navigationController popViewControllerAnimated:YES];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+        [UIView commitAnimations];
+    }
 }
 
 // ================================================================================
@@ -197,8 +211,15 @@
             priceCell = [[PriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
         }
         [priceCell.textField setDelegate:self];
-        [priceCell.currencyButton addTarget:self action:@selector(currencyButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
         [_textFieldMutableArray insertObject:(priceCell.textField) atIndex:2];
+        if (_currencyDidChoose == nil) //_currencyDidChoose could have another name as e.g _currencyName, but in this case code has less variables
+        {
+            _currencyDidChoose = [_currencyArray objectAtIndex:0];
+        }
+        [priceCell.currencyButton setTitle:_currencyDidChoose forState:UIControlStateNormal];
+        [priceCell.currencyButton addTarget:self
+                                     action:@selector(currencyButtonDidClick)
+                           forControlEvents:UIControlEventTouchUpInside];
         return priceCell;
         
     }
@@ -209,7 +230,18 @@
             categoryCell = [[CategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
         }
         [categoryCell.textField setDelegate:self];
-        [categoryCell.chooseCategoryButton addTarget:self action:@selector(chooseCategoryButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        if (_categoryDidChoose == nil)
+        {
+            [categoryCell.textField setPlaceholder:NSLocalizedString(@"Category", nil)];
+        }
+        else
+        {
+           [categoryCell.textField setText:_categoryDidChoose]; 
+        }
+        
+        [categoryCell.chooseCategoryButton addTarget:self
+                                              action:@selector(chooseCategoryButtonDidClick)
+                                    forControlEvents:UIControlEventTouchUpInside];
         return categoryCell;
     }
     else
@@ -257,7 +289,7 @@
     }
     return YES;
 }
-
+// --------------------------------------------------------------------------------
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
@@ -328,16 +360,30 @@
     PriceCell *cell = (PriceCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
     [cell.currencyButton setTitle:_currencyDidChoose forState:UIControlStateNormal];
 }
+
 // ================================================================================
-#pragma mark - ActionSheets - buttons
+#pragma mark - CurrencyPickerDelegate
+// ================================================================================
+-(void)categoryPickerDidChangeToCategory:(NSString *)category CategoryPickerDidChangeToRow:(NSInteger)row
+{
+    _categoryDidChoose = category;
+    _row = row;
+    CategoryCell *categoryCell = (CategoryCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:2]];
+    [categoryCell.textField setText:_categoryDidChoose];
+}
+
+// ================================================================================
+#pragma mark - addTableViewCells - buttons
 // ================================================================================
 -(void)currencyButtonDidClick
 {
     PriceCell *cell = (PriceCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
     CurrencyPicker *currencyPicker = [[CurrencyPicker alloc] init];
+    currencyPicker.currencyArray = _currencyArray;
     
     [currencyPicker setCurrencyDelegate:self];
     [currencyPicker scrollToSelectedValue:cell.currencyButton.titleLabel.text];
+    _currencyName = cell.currencyButton.titleLabel.text;
     [currencyPicker showInView:self.view];
 }
 
@@ -346,6 +392,12 @@
 {
     CategoryPicker *categoryPicker = [[CategoryPicker alloc] init];
     categoryPicker.categoryArray = _categoryArray;
+
+    [categoryPicker setCategoryDelegate:self];
+    if (_categoryDidChoose != nil)
+    {
+       [categoryPicker scrollToSelectedValue:_categoryDidChoose];
+    }
     [categoryPicker showInView:self.view];
 }
 // --------------------------------------------------------------------------------
@@ -456,12 +508,6 @@
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-// ================================================================================
-#pragma mark - CategoryArrayDelegate
-// ================================================================================
-
 
 // --------------------------------------------------------------------------------
-
-
 @end

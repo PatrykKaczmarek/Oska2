@@ -22,7 +22,7 @@
 //Delegates:
 // ================================================================================
 @protocol SaveButtonDelegate <NSObject>
--(void)productName:(NSString *)productName productAmount:(NSString *)productAmount productPrice:(NSString *)productPrice productDescription:(NSString *)productDescription priceCurrency:(NSString *)priceCurrency productImage:(UIImage *)productImage;
+-(void)productName:(NSString *)productName productAmount:(NSString *)productAmount productPrice:(NSString *)productPrice productDescription:(NSString *)productDescription priceCurrency:(NSString *)priceCurrency productImage:(UIImage *)productImage category:(NSInteger)category;
 @end
 
 //@protocol CategoryArrayDelegate <NSObject>
@@ -31,7 +31,7 @@
 // ================================================================================
 //Declarations:
 // ================================================================================
-@interface AddItemViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EnhancedKeyboardDelegate, CurrencyPickerDelegate>
+@interface AddItemViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EnhancedKeyboardDelegate, CurrencyPickerDelegate, CategoryPickerDelegate>
 {
     NSMutableArray *_textFieldMutableArray;
     UILabel *_addImageForegroundLabel;
@@ -39,11 +39,14 @@
     UIImageView *_addImageImageView;
     UIImagePickerController *_imagePickerController;
     NSString *_currencyDidChoose;
+    NSString *_categoryDidChoose;
     UIBarButtonItem *_saveButtonItem;
+    NSInteger _row;
 }
 // --------------------------------------------------------------------------------
 @property (nonatomic, strong) UITableView *addTableView;
 @property (nonatomic, strong) NSMutableArray *categoryArray;
+@property (nonatomic, strong) NSMutableArray *currencyArray;
 // --------------------------------------------------------------------------------
 @property (nonatomic, strong) EnhancedKeyboard *enhancedKeyboard;
 // --------------------------------------------------------------------------------

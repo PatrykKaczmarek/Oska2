@@ -27,9 +27,7 @@
     return self;    
 }
 // ================================================================================
-
 #pragma mark - View lifecycle
-
 // ================================================================================
 - (void)viewDidLoad
 {
@@ -38,19 +36,11 @@
     //UIBarButtonItem:
     _editBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", nil) style:UIBarButtonItemStylePlain target:self action:@selector(editRecord)];
     self.navigationItem.leftBarButtonItem = _editBarButtonItem;
-    _addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addRecord)];
+    _addBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                      target:self
+                                                                      action:@selector(addRecord)];
     self.navigationItem.rightBarButtonItem = _addBarButtonItem;
-    
-    //UIAlertView:
-    _addRecordAlertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Record", nil) message:NSLocalizedString(@"Please add you data", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) otherButtonTitles:NSLocalizedString(@"Add to fruits", nil),NSLocalizedString(@"Add to vegetables", nil), nil];
-    [_addRecordAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    
-    //    _chooseRecordDestinationAlertView = [[UIAlertView alloc] initWithTitle:@"Destination" message:@"Where you want to put this data?" delegate:self cancelButtonTitle:@"Fruits" otherButtonTitles:@"Vegetables", nil];
-    
-    //UITextField in AlertView
-    _addRecordTextField = [_addRecordAlertView textFieldAtIndex:0];
-    _addRecordTextField.keyboardType = UIKeyboardTypeDefault;
-    
+       
     _setAnimation = [[NSIndexSet alloc] init];
     
     //UITableView:
@@ -67,21 +57,39 @@
                                                    dateStyle:NSDateFormatterNoStyle
                                                    timeStyle:NSDateFormatterShortStyle];
 
-    dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"apple", nil), NSLocalizedString(@"banana", nil), NSLocalizedString(@"pineapple", nil), NSLocalizedString(@"strawberry", nil), NSLocalizedString(@"watermelon", nil), nil];
-    dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"carrot", nil), NSLocalizedString(@"tomato", nil), NSLocalizedString(@"cucumber", nil), nil];
-    dataOfFruitsPriceArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), nil];
-    dataOfFruitsAmountArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), NSLocalizedString(@"no data", nil), nil];
+    dataOfFruitsTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"apple", nil),
+                                                                     NSLocalizedString(@"banana", nil),
+                                                                     NSLocalizedString(@"pineapple", nil),
+                                                                     NSLocalizedString(@"strawberry", nil),
+                                                                     NSLocalizedString(@"watermelon", nil), nil];
+    dataOfFruitsPriceArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil),
+                                                                       NSLocalizedString(@"no data", nil),
+                                                                       NSLocalizedString(@"no data", nil),
+                                                                       NSLocalizedString(@"no data", nil),
+                                                                       NSLocalizedString(@"no data", nil), nil];
+    dataOfFruitsAmountArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil),
+                                                                        NSLocalizedString(@"no data", nil),
+                                                                        NSLocalizedString(@"no data", nil),
+                                                                        NSLocalizedString(@"no data", nil),
+                                                                        NSLocalizedString(@"no data", nil), nil];
     ImagesOfFruitArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"apple"],
                                                                  [UIImage imageNamed:@"banana"],
                                                                  [UIImage imageNamed:@"pineapple"],
                                                                  [UIImage imageNamed:@"strawberry"],
-                                                                 [UIImage imageNamed:@"watermelon"],
-                                                                 nil];
+                                                                 [UIImage imageNamed:@"watermelon"], nil];
     
+    dataOfVegetablesTableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"carrot", nil),
+                                                                         NSLocalizedString(@"tomato", nil),
+                                                                         NSLocalizedString(@"cucumber", nil), nil];
+    dataOfVegetablesPriceArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil),
+                                                                           NSLocalizedString(@"no data", nil),
+                                                                           NSLocalizedString(@"no data", nil), nil];
+    dataOfVegetablesAmountArray = [[NSMutableArray alloc]  initWithObjects: NSLocalizedString(@"no data", nil),
+                                                                            NSLocalizedString(@"no data", nil),
+                                                                            NSLocalizedString(@"no data", nil), nil];
     ImagesOfVegetablesArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"carrot"],
                                                                       [UIImage imageNamed:@"tomato"],
-                                                                      [UIImage imageNamed:@"cucumber"],
-                                                                      nil];
+                                                                      [UIImage imageNamed:@"cucumber"], nil];
     
 //    O2Cell *w = [[O2Cell alloc] init];
 //    _mainTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:w selector:@selector(updateMainTimer:) userInfo:nil repeats:YES];
@@ -111,9 +119,7 @@
     [_tableView setFrame:self.view.frame];
 }
 // ================================================================================
-
 #pragma mark - UINavigationItem
-
 // ================================================================================
 -(void)editRecord
 {
@@ -129,9 +135,7 @@
         [self.tableView setEditing:NO animated:YES];
         _editBarButtonItem.tag = 0;
         [self.tableView reloadSections:_setAnimation withRowAnimation:UITableViewRowAnimationFade];
-        
     }
-    [_chooseRecordDestinationAlertView show];
 }
 
 // --------------------------------------------------------------------------------
@@ -148,48 +152,62 @@
     [UIView commitAnimations];
     
     [self hideTabBar:self.tabBarController];
-
-//    [_addRecordAlertView show];
 }
 
 // --------------------------------------------------------------------------------
--(void)productName:(NSString *)productName productAmount:(NSString *)productAmount productPrice:(NSString *)productPrice productDescription:(NSString *)productDescription priceCurrency:(NSString *)priceCurrency productImage:(UIImage *)productImage
-{   
-    [dataOfFruitsTableArray addObject:productName];
-    
-    if (productAmount != nil)
-    {
-        [dataOfFruitsAmountArray addObject:productAmount];
-    }else{
-        [dataOfFruitsAmountArray addObject:@"no data"];
-    }
-    
-    if ((productPrice != nil) || [productPrice length] > 0)
-    {
-        [dataOfFruitsPriceArray addObject:[NSString stringWithFormat:@"%@ %@", productPrice, priceCurrency]];
-    }else{
-        [dataOfFruitsPriceArray addObject:@"no data"];
-    }
-    
-    if (productDescription != nil)
-    {
-        //podpisz description po label?
-    }else{
+-(void)productName:(NSString *)productName productAmount:(NSString *)productAmount productPrice:(NSString *)productPrice productDescription:(NSString *)productDescription priceCurrency:(NSString *)priceCurrency productImage:(UIImage *)productImage category:(NSInteger)category
+{
+    if (category == 0){
+        [dataOfFruitsTableArray addObject:productName];
         
+        if (productAmount != nil){
+            [dataOfFruitsAmountArray addObject:productAmount];
+        }else{
+            [dataOfFruitsAmountArray addObject:@"no data"];
+        }
+        if ((productPrice != nil) || [productPrice length] > 0){
+            [dataOfFruitsPriceArray addObject:[NSString stringWithFormat:@"%@ %@", productPrice, priceCurrency]];
+        }else{
+            [dataOfFruitsPriceArray addObject:@"no data"];
+        }
+        if (productDescription != nil){
+            //podpisz description po label?
+        }else{
+            
+        }
+        if (productImage != nil){
+            [ImagesOfFruitArray addObject:productImage];
+        }else{
+            [ImagesOfFruitArray addObject:[UIImage imageNamed:@"noimage"]];
+        }
+    }else{       
+        [dataOfVegetablesTableArray addObject:productName];
+        
+        if (productAmount != nil){
+            [dataOfVegetablesAmountArray addObject:productAmount];
+        }else{
+            [dataOfVegetablesAmountArray addObject:@"no data"];
+        }
+        if ((productPrice != nil) || [productPrice length] > 0){
+            [dataOfVegetablesPriceArray addObject:[NSString stringWithFormat:@"%@ %@", productPrice, priceCurrency]];
+        }else{
+            [dataOfVegetablesPriceArray addObject:@"no data"];
+        }
+        if (productDescription != nil){
+            //podpisz description po label?
+        }else{
+            
+        }
+        if (productImage != nil){
+            [ImagesOfVegetablesArray addObject:productImage];
+        }else{
+            [ImagesOfVegetablesArray addObject:[UIImage imageNamed:@"noimage"]];
+        }
     }
-    
-    if (productImage != nil)
-    {
-        [ImagesOfFruitArray addObject:productImage];
-    }else{
-        [ImagesOfFruitArray addObject:[UIImage imageNamed:@"noimage"]];
-    }    
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationFade];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:category] withRowAnimation: UITableViewRowAnimationFade];
 }
 // ================================================================================
-
 #pragma mark - UITabBarController
-
 // ================================================================================
 - (void) hideTabBar:(UITabBarController *) tabbarcontroller 
 {
@@ -245,29 +263,8 @@
     [UIView commitAnimations];
 }
 
-// --------------------------------------------------------------------------------
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    textFieldOutputString = _addRecordTextField.text;
-    
-    if (buttonIndex == 1)
-    {
-        [dataOfFruitsTableArray addObject:textFieldOutputString];
-        [ImagesOfFruitArray addObject:[UIImage imageNamed:@"noimage"]];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation: UITableViewRowAnimationFade];
-    }
-    else if (buttonIndex == 2)
-    {
-        [dataOfVegetablesTableArray addObject:textFieldOutputString];
-        [ImagesOfVegetablesArray addObject:[UIImage imageNamed:@"noimage"]];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation: UITableViewRowAnimationFade];
-    }
-}
-
 // ================================================================================
-
 #pragma mark - UITableView DataSource & Delegate
-
 // ================================================================================
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
@@ -346,10 +343,10 @@
                 cell = [[O2Cell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier2];
             }
             cell.mainLabel.text = [dataOfVegetablesTableArray objectAtIndex:indexPath.row];
-            cell.detailLabelAmount.text = @"1234 ";
-            cell.detailLabelPrice.text = @"56.45 PLN";
+            cell.detailLabelAmount.text = [dataOfVegetablesAmountArray objectAtIndex:indexPath.row];
+            cell.detailLabelPrice.text = [dataOfVegetablesPriceArray objectAtIndex:indexPath.row];
             cell.detailLabelNamePrice.text = NSLocalizedString(@"Price: ", nil);
-            cell.detailLabelNameAmount.text = NSLocalizedString(@"Amount:  ", nil);
+            cell.detailLabelNameAmount.text = NSLocalizedString(@"Amount: ", nil);
             cell.o2ImageView.image = [ImagesOfVegetablesArray objectAtIndex:indexPath.row];
 //            cell.detailLabel.text = newDateString;
             break;
@@ -401,9 +398,15 @@
     {
         case 0:
             [dataOfFruitsTableArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+            [dataOfFruitsAmountArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+            [dataOfFruitsPriceArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+            [ImagesOfFruitArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
             break;
         case 1:
             [dataOfVegetablesTableArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+            [dataOfVegetablesAmountArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+            [dataOfVegetablesPriceArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
+            [ImagesOfVegetablesArray exchangeObjectAtIndex:sourceIndexPath.row withObjectAtIndex:destinationIndexPath.row];
             break;
         default:
             break;
@@ -418,11 +421,15 @@
         {
             case 0:
                 [dataOfFruitsTableArray removeObjectAtIndex:indexPath.row];
+                [dataOfFruitsAmountArray removeObjectAtIndex:indexPath.row];
+                [dataOfFruitsPriceArray removeObjectAtIndex:indexPath.row];
                 [ImagesOfFruitArray removeObjectAtIndex:indexPath.row];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                 break;
             case 1:
                 [dataOfVegetablesTableArray removeObjectAtIndex:indexPath.row];
+                [dataOfVegetablesAmountArray removeObjectAtIndex:indexPath.row];
+                [dataOfVegetablesPriceArray removeObjectAtIndex:indexPath.row];
                 [ImagesOfVegetablesArray removeObjectAtIndex:indexPath.row];
                 [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
                 break;

@@ -20,8 +20,6 @@
         [cancelDoneToolbar setCustomDelegate:self];
         _pickerToolbar = cancelDoneToolbar;
         [self addSubview:_pickerToolbar];
-
-        _currencyMutableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"EUR", nil), NSLocalizedString(@"USD", nil), NSLocalizedString(@"CHF", nil), NSLocalizedString(@"CZK", nil), NSLocalizedString(@"GBP", nil), NSLocalizedString(@"PLN", nil), NSLocalizedString(@"RUB", nil), NSLocalizedString(@"JPY", nil), NSLocalizedString(@"HUF", nil),  nil];
         
         [self setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         [self setTitle:NSLocalizedString(@"Choose currency", nil)];
@@ -65,7 +63,7 @@
 // --------------------------------------------------------------------------------
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [_currencyMutableArray count];
+    return [_currencyArray count];
 }
 
 // --------------------------------------------------------------------------------
@@ -74,15 +72,9 @@
     NSString *result = nil;
     if ([pickerView isEqual:_pickerView])
     {
-        result = [NSString stringWithFormat:@"%@", [_currencyMutableArray objectAtIndex:row]];
+        result = [NSString stringWithFormat:@"%@", [_currencyArray objectAtIndex:row]];
     }
     return result;
-}
-
-// --------------------------------------------------------------------------------
--(void)scrollToSelectedValue:(NSString*)value
-{
-    [_pickerView selectRow:[_currencyMutableArray indexOfObject:value] inComponent:0 animated:NO];
 }
 
 // ================================================================================
@@ -92,7 +84,7 @@
 {
     if ([_currencyDelegate respondsToSelector:@selector(currencyPickerDidChangeToCurrency:)])
     {
-        [_currencyDelegate currencyPickerDidChangeToCurrency:[_currencyMutableArray objectAtIndex:[_pickerView selectedRowInComponent:0]]];
+        [_currencyDelegate currencyPickerDidChangeToCurrency:[_currencyArray objectAtIndex:[_pickerView selectedRowInComponent:0]]];
     }
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
@@ -101,6 +93,14 @@
 -(void)cancelAction
 {
     [self dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+// ================================================================================
+#pragma mark - Other methods
+// ================================================================================
+-(void)scrollToSelectedValue:(NSString*)value
+{
+    [_pickerView selectRow:[_currencyArray indexOfObject:value] inComponent:0 animated:NO];
 }
 
 // --------------------------------------------------------------------------------

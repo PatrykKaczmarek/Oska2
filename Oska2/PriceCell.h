@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIBarButtonItem *doneButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButton;
 @property (nonatomic, strong) UIButton *currencyButton;
+@property (nonatomic, strong) NSString *currencyName;
 // --------------------------------------------------------------------------------
 @property (nonatomic, strong) EnhancedKeyboard *enhancedKeyboard;
 // --------------------------------------------------------------------------------
