@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CancelDoneToolbar.h"
 
 // ================================================================================
 //Delegates:
@@ -15,13 +16,11 @@
 -(void)currencyPickerDidChangeToCurrency:(NSString *)currency;
 @end
 
-
 // ================================================================================
 //Declarations:
 // ================================================================================
-@interface CurrencyPicker : UIActionSheet <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface CurrencyPicker : UIActionSheet <UIPickerViewDelegate, UIPickerViewDataSource, CustomToolbarDelegate>
 {
-    UILabel *_label;
     UIToolbar *_pickerToolbar;
 }
 // --------------------------------------------------------------------------------
@@ -29,6 +28,8 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIBarButtonItem *doneButton;
 @property (nonatomic, strong) UIBarButtonItem *cancelButt;
+// --------------------------------------------------------------------------------
+//@property (nonatomic, strong) EnhancedActionSheet *enhancedActionSheet;
 // --------------------------------------------------------------------------------
 @property (nonatomic, strong) id<CurrencyPickerDelegate> currencyDelegate;
 // --------------------------------------------------------------------------------

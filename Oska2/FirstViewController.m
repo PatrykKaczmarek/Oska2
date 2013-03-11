@@ -20,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        self.title = NSLocalizedString(@"Item List", nil);
+        self.title = NSLocalizedString(@"Shopping list", nil);
         
         [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:(@"fruits_little")] withFinishedUnselectedImage:[UIImage imageNamed:(@"fruits_little")]];
     }
@@ -153,7 +153,7 @@
 }
 
 // --------------------------------------------------------------------------------
--(void)ProductName:(NSString *)productName ProductAmount:(NSString *)productAmount ProductPrice:(NSString *)productPrice ProductDescription:(NSString *)productDescription PriceCurrency:(NSString *)priceCurrency ProductImage:(UIImage *)productImage
+-(void)productName:(NSString *)productName productAmount:(NSString *)productAmount productPrice:(NSString *)productPrice productDescription:(NSString *)productDescription priceCurrency:(NSString *)priceCurrency productImage:(UIImage *)productImage
 {   
     [dataOfFruitsTableArray addObject:productName];
     

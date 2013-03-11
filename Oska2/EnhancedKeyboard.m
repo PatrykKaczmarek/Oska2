@@ -8,9 +8,10 @@
 
 #import "EnhancedKeyboard.h"
 
+// ================================================================================
 @implementation EnhancedKeyboard
 
-// ================================================================================
+// --------------------------------------------------------------------------------
 - (UIToolbar *)prevEnabled:(BOOL)prevEnabled nextEnabled:(BOOL)nextEnabled;
 {
     UIToolbar *toolbar = [[UIToolbar alloc] init];

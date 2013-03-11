@@ -1,14 +1,14 @@
 //
-//  CurrencyPicker.m
+//  CategoryPicker.m
 //  Oska2
 //
-//  Created by Neru on 01/03/2013.
+//  Created by Neru on 10/03/2013.
 //  Copyright (c) 2013 Neru. All rights reserved.
 //
 
-#import "CurrencyPicker.h"
+#import "CategoryPicker.h"
 
-@implementation CurrencyPicker
+@implementation CategoryPicker
 
 // ================================================================================
 - (id)initWithFrame:(CGRect)frame
@@ -20,24 +20,23 @@
         [cancelDoneToolbar setCustomDelegate:self];
         _pickerToolbar = cancelDoneToolbar;
         [self addSubview:_pickerToolbar];
-
-        _currencyMutableArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"EUR", nil), NSLocalizedString(@"USD", nil), NSLocalizedString(@"CHF", nil), NSLocalizedString(@"CZK", nil), NSLocalizedString(@"GBP", nil), NSLocalizedString(@"PLN", nil), NSLocalizedString(@"RUB", nil), NSLocalizedString(@"JPY", nil), NSLocalizedString(@"HUF", nil),  nil];
         
         [self setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-        [self setTitle:NSLocalizedString(@"Choose currency", nil)];
+        [self setTitle:NSLocalizedString(@"Choose category", nil)];
         
         _pickerView = [[UIPickerView alloc] init];
         [_pickerView setDataSource:self];
         [_pickerView setDelegate:self];
         _pickerView.showsSelectionIndicator = YES;
         [self addSubview:_pickerView];
+        
     }
     return self;
 }
 
 // --------------------------------------------------------------------------------
 -(void)layoutSubviews
-{    
+{
     [_pickerView setFrame:CGRectMake(0.0f,
                                      44.0f,
                                      CGRectGetWidth(self.frame),
@@ -65,7 +64,7 @@
 // --------------------------------------------------------------------------------
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [_currencyMutableArray count];
+    return [_categoryArray count];
 }
 
 // --------------------------------------------------------------------------------
@@ -74,32 +73,26 @@
     NSString *result = nil;
     if ([pickerView isEqual:_pickerView])
     {
-        result = [NSString stringWithFormat:@"%@", [_currencyMutableArray objectAtIndex:row]];
+        result = [NSString stringWithFormat:@"%@", [_categoryArray objectAtIndex:row]];
     }
     return result;
-}
-
-// --------------------------------------------------------------------------------
--(void)scrollToSelectedValue:(NSString*)value
-{
-    [_pickerView selectRow:[_currencyMutableArray indexOfObject:value] inComponent:0 animated:NO];
 }
 
 // ================================================================================
 #pragma mark - CustomToolbarDelegate
 // ================================================================================
--(void)doneAction
+-(void)cancelAction
 {
-    if ([_currencyDelegate respondsToSelector:@selector(currencyPickerDidChangeToCurrency:)])
-    {
-        [_currencyDelegate currencyPickerDidChangeToCurrency:[_currencyMutableArray objectAtIndex:[_pickerView selectedRowInComponent:0]]];
-    }
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 // --------------------------------------------------------------------------------
--(void)cancelAction
+-(void)doneAction
 {
+//    if ([_currencyDelegate respondsToSelector:@selector(currencyPickerDidChangeToCurrency:)])
+//    {
+//        [_currencyDelegate currencyPickerDidChangeToCurrency:[_currencyMutableArray objectAtIndex:[_pickerView selectedRowInComponent:0]]];
+//    }
     [self dismissWithClickedButtonIndex:0 animated:YES];
 }
 

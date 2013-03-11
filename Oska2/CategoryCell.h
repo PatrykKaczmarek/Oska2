@@ -1,8 +1,8 @@
 //
-//  TemplateViewController.h
+//  SectionChooseCell.h
 //  Oska2
 //
-//  Created by Neru on 06/03/2013.
+//  Created by Neru on 10/03/2013.
 //  Copyright (c) 2013 Neru. All rights reserved.
 //
 
@@ -11,13 +11,13 @@
 // ================================================================================
 //Declarations:
 // ================================================================================
-@interface TemplateViewController : UIViewController
+@interface CategoryCell : UITableViewCell <UITextFieldDelegate>
 {
-    UIScrollView *_scrollView;
-    NSArray *_templatePicturesArray;
-    UIButton *_buttonWithPicture;
+    
 }
-
+// --------------------------------------------------------------------------------
+@property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) UIButton *chooseCategoryButton;
 // --------------------------------------------------------------------------------
 
 @end

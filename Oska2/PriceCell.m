@@ -41,19 +41,19 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    CGSize _currencyButtonSize = CGSizeMake(50.0f, 30.0f);
+    CGSize currencyButtonSize = CGSizeMake(50.0f, 30.0f);
     float marginOfButton = 5.0f;
     float margin = 10.0f;
     
     [_textField setFrame:CGRectMake(CGRectGetMinX(self.contentView.frame) + margin,
                                     CGRectGetMinY(self.contentView.frame),
-                                    CGRectGetWidth(self.contentView.frame) - _currencyButtonSize.width - 2*marginOfButton - margin,
+                                    CGRectGetWidth(self.contentView.frame) - currencyButtonSize.width - 2*marginOfButton - margin,
                                     CGRectGetHeight(self.contentView.frame))];
     
     [_currencyButton setFrame:CGRectMake(CGRectGetMaxX(_textField.frame) + marginOfButton,
                                          marginOfButton,
-                                         _currencyButtonSize.width,
-                                         _currencyButtonSize.height)];
+                                         currencyButtonSize.width,
+                                         currencyButtonSize.height)];
 }
 
 // --------------------------------------------------------------------------------

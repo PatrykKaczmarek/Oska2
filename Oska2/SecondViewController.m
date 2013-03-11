@@ -19,7 +19,8 @@
 {
     self = [super init];
     if (self) {
-        self.title = NSLocalizedString(@"Second", nil) ;
+        self.title = NSLocalizedString(@"Shopping cart", nil) ;
+        [self.view setBackgroundColor:[UIColor blueColor]];
     }
     return self;
 }

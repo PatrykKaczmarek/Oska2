@@ -20,8 +20,7 @@
     self = [super init];
     if (self) 
     {
-        [self setTitle:(NSLocalizedString(@"New Item", nil))];
-        [self.view setBackgroundColor:[UIColor yellowColor]];
+        [self setTitle:(NSLocalizedString(@"New object", nil))];
     }
     return self;
 }
@@ -33,17 +32,20 @@
 {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor yellowColor]];
+    
     _textFieldMutableArray = [[NSMutableArray alloc] init];
+    _categoryArray = [[NSMutableArray alloc] initWithObjects:NSLocalizedString(@"Fruits", nil), NSLocalizedString(@"Vegetables", nil), nil];
     
     //will show "cancel" in backBarButtonItem in VC one level up in stack:
 //    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
  
-    UIBarButtonItem *saveButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                                       style:UIBarButtonItemStyleBordered
-                                                                      target:self
-                                                                      action:@selector(saveRecord)];
-    self.navigationItem.rightBarButtonItem = saveButtonItem;
-    [saveButtonItem setEnabled:NO];
+    _saveButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil)
+                                                       style:UIBarButtonItemStyleBordered
+                                                      target:self
+                                                      action:@selector(saveRecord)];
+    self.navigationItem.rightBarButtonItem = _saveButtonItem;
+    [_saveButtonItem setEnabled:NO];
     
     _imagePickerController = [[UIImagePickerController alloc] init];
     [_imagePickerController setDelegate:self];
@@ -51,14 +53,9 @@
     _addTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [_addTableView setDelegate:self];
     [_addTableView setDataSource:self];
-    _addTableView.scrollEnabled = NO;
-    
-    UIView *backView = [[UIView alloc] initWithFrame:CGRectZero];
-    backView.backgroundColor = [UIColor clearColor];
-    _addTableView.backgroundView = backView;
+//    _addTableView.scrollEnabled = NO;
+    [_addTableView setBackgroundView:nil];
     [self.view addSubview:_addTableView];
-    
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(AddImageImageViewDidTouch:)];
     
     _addImageBackgroundLabel = [[UILabel alloc] init];
     [_addImageBackgroundLabel setBackgroundColor:[UIColor brownColor]];
@@ -72,6 +69,7 @@
     [_addImageForegroundLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:_addImageForegroundLabel];
     
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(AddImageImageViewDidTouch:)];
     _addImageImageView = [[UIImageView alloc] init];
     [_addImageImageView addGestureRecognizer:tapGestureRecognizer];
     [_addImageImageView setUserInteractionEnabled:YES];
@@ -115,19 +113,20 @@
 }
 
 // ================================================================================
-#pragma mark - 
+#pragma mark - UINavigationItem actions
 // ================================================================================
 -(void)saveRecord
 {   
-    if ([_delegate respondsToSelector:@selector(ProductName:ProductAmount:ProductPrice:ProductDescription:PriceCurrency:ProductImage:)])
+    if ([_delegate respondsToSelector:@selector(productName:productAmount:productPrice:productDescription:priceCurrency:productImage:)])
     {
-        [_delegate ProductName:[[_textFieldMutableArray objectAtIndex:0] text]
-                 ProductAmount:[[_textFieldMutableArray objectAtIndex:1] text]
-                  ProductPrice:[[_textFieldMutableArray objectAtIndex:2] text]
-            ProductDescription:[[_textFieldMutableArray objectAtIndex:3] text]
-                 PriceCurrency:(_currencyDidChoose)
-                  ProductImage:(_addImageImageView.image)];
+        [_delegate productName:[[_textFieldMutableArray objectAtIndex:0] text]
+                 productAmount:[[_textFieldMutableArray objectAtIndex:1] text]
+                  productPrice:[[_textFieldMutableArray objectAtIndex:2] text]
+            productDescription:[[_textFieldMutableArray objectAtIndex:3] text]
+                 priceCurrency:(_currencyDidChoose)
+                  productImage:(_addImageImageView.image)];
     }
+//    UIView animateWithDuration:<#(NSTimeInterval)#> delay:<#(NSTimeInterval)#> options:<#(UIViewAnimationOptions)#> animations:<#^(void)animations#> completion:<#^(BOOL finished)completion#>
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
     [UIView setAnimationDuration:0.75];
@@ -141,7 +140,7 @@
 // ================================================================================
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 // --------------------------------------------------------------------------------
@@ -152,8 +151,11 @@
         case 0:
             return 1;
             break;
-        default:
+        case 1:
             return 3;
+            break;
+        default:
+            return 1;
             break;
     }
 }
@@ -171,15 +173,18 @@
     TextCell *textCell;
     AmountCell *amountCell;
     PriceCell *priceCell;
+    CategoryCell *categoryCell;
     static NSString *cellIdentifier1 = @"Cell1";
     static NSString *cellIdentifier2 = @"Cell2";
     static NSString *cellIdentifier3 = @"Cell3";
+    static NSString *cellIdentifier4 = @"Cell4";
     
     if ((indexPath.section == 1) && (indexPath.row == 0))
     {
         if (cell == nil)
         {
             amountCell = [[AmountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
+            
         }
         [amountCell.textField setDelegate:self];
         [_textFieldMutableArray insertObject:(amountCell.textField) atIndex:1];
@@ -197,6 +202,16 @@
         return priceCell;
         
     }
+    else if (indexPath.section == 2)
+    {
+        if (cell == nil)
+        {
+            categoryCell = [[CategoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
+        }
+        [categoryCell.textField setDelegate:self];
+        [categoryCell.chooseCategoryButton addTarget:self action:@selector(chooseCategoryButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        return categoryCell;
+    }
     else
     {
         if (cell == nil)
@@ -207,12 +222,14 @@
                 case 0:
                     [textCell.textField setPlaceholder:NSLocalizedString(@"Enter name here", nil)];
                     [textCell.textField becomeFirstResponder];
+                    textCell.textField.tag = 255;
                     [_textFieldMutableArray insertObject:(textCell.textField) atIndex:0];
                     break;
                 case 1:
                     if (indexPath.row == 2)
                     {
                         [textCell.textField setPlaceholder:NSLocalizedString(@"Enter description here", nil)];
+                        textCell.textField.tag = 0;
                         [_textFieldMutableArray insertObject:(textCell.textField) atIndex:3];
                         break;
                     }
@@ -230,6 +247,17 @@
 // ================================================================================
 #pragma mark - UITextField delegate
 // ================================================================================
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField.tag == 255) {
+        if (range.location == 0 && string.length > 0) {
+            [_saveButtonItem setEnabled:YES];
+        } else if (range.location == 0 && (!string || [string isEqualToString:@""])) {
+            [_saveButtonItem setEnabled:NO];
+        }
+    }
+    return YES;
+}
+
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.enhancedKeyboard = [[EnhancedKeyboard alloc] init];
@@ -306,13 +334,20 @@
 -(void)currencyButtonDidClick
 {
     PriceCell *cell = (PriceCell *)[self.addTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-    CurrencyPicker *actionSheetCurrencyPicker = [[CurrencyPicker alloc] init];
+    CurrencyPicker *currencyPicker = [[CurrencyPicker alloc] init];
     
-    [actionSheetCurrencyPicker setCurrencyDelegate:self];
-    [actionSheetCurrencyPicker scrollToSelectedValue:cell.currencyButton.titleLabel.text];
-    [actionSheetCurrencyPicker showInView:self.view];
+    [currencyPicker setCurrencyDelegate:self];
+    [currencyPicker scrollToSelectedValue:cell.currencyButton.titleLabel.text];
+    [currencyPicker showInView:self.view];
 }
 
+// --------------------------------------------------------------------------------
+-(void)chooseCategoryButtonDidClick
+{
+    CategoryPicker *categoryPicker = [[CategoryPicker alloc] init];
+    categoryPicker.categoryArray = _categoryArray;
+    [categoryPicker showInView:self.view];
+}
 // --------------------------------------------------------------------------------
 -(void)AddImageImageViewDidTouch:(id)sender
 {
@@ -421,7 +456,12 @@
 {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
+// ================================================================================
+#pragma mark - CategoryArrayDelegate
+// ================================================================================
+
 
 // --------------------------------------------------------------------------------
+
 
 @end

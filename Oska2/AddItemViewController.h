@@ -13,15 +13,21 @@
 #import "TextCell.h"
 #import "AmountCell.h"
 #import "PriceCell.h"
+#import "CategoryCell.h"
 #import "CurrencyPicker.h"
+#import "CategoryPicker.h"
 #import "TemplateViewController.h"
 
 // ================================================================================
 //Delegates:
 // ================================================================================
 @protocol SaveButtonDelegate <NSObject>
--(void)ProductName:(NSString *)productName ProductAmount:(NSString *)productAmount ProductPrice:(NSString *)productPrice ProductDescription:(NSString *)productDescription PriceCurrency:(NSString *)priceCurrency ProductImage:(UIImage *)productImage;
+-(void)productName:(NSString *)productName productAmount:(NSString *)productAmount productPrice:(NSString *)productPrice productDescription:(NSString *)productDescription priceCurrency:(NSString *)priceCurrency productImage:(UIImage *)productImage;
 @end
+
+//@protocol CategoryArrayDelegate <NSObject>
+//-(void)CategoryArray:(NSMutableArray *)categoryArray;
+//@end
 // ================================================================================
 //Declarations:
 // ================================================================================
@@ -33,12 +39,16 @@
     UIImageView *_addImageImageView;
     UIImagePickerController *_imagePickerController;
     NSString *_currencyDidChoose;
+    UIBarButtonItem *_saveButtonItem;
 }
 // --------------------------------------------------------------------------------
 @property (nonatomic, strong) UITableView *addTableView;
+@property (nonatomic, strong) NSMutableArray *categoryArray;
 // --------------------------------------------------------------------------------
 @property (nonatomic, strong) EnhancedKeyboard *enhancedKeyboard;
+// --------------------------------------------------------------------------------
 @property (nonatomic, strong) id <SaveButtonDelegate> delegate;
+//@property (nonatomic, strong) id <CategoryArrayDelegate> categoryDelegate;
 // --------------------------------------------------------------------------------
 -(void)currencyButtonDidClick;
 // --------------------------------------------------------------------------------
